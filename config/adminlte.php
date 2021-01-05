@@ -225,21 +225,9 @@ return [
 
     'menu' => [
         [
-            'text' => 'search',
-            'search' => true,
-            'topnav' => true,
-        ],
-        [
-            'text' => 'blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
-        ],
-        [
-            'text'        => 'pages',
-            'url'         => 'admin/pages',
-            'icon'        => 'far fa-fw fa-file',
-            'label'       => 4,
-            'label_color' => 'success',
+            'text'        => 'Site Principal',
+            'url'         => '/welcome',
+            'icon'        => 'fas fa-undo-alt',
         ],
         ['header' => 'account_settings'],
         [
@@ -290,17 +278,29 @@ return [
                 ],
             ],
         ],
-        ['header' => 'labels'],
+        ['header' => 'Modification du Site'],
         [
-            'text'       => 'important',
-            'icon_color' => 'red',
-            'url'        => '#',
+            'text'       => 'NAVBAR',
+            'icon'       => 'fas fa-bars',
+            'url'        => '/navbar',
         ],
         [
-            'text'       => 'warning',
-            'icon_color' => 'yellow',
-            'url'        => '#',
+            'text'    => 'Carousel',
+
+            'submenu' => [
+                [
+                    'text'       => 'Image Navbar/carousel',
+                    'icon'       => 'fas fa-images',
+                    'url'        => '#',
+                ],
+                [
+                    'text'       => 'texte Carousel',
+                    'icon'       => 'fas fa-pen',
+                    'url'        => '#',
+                ],
+            ],
         ],
+        
         [
             'text'       => 'information',
             'icon_color' => 'cyan',
