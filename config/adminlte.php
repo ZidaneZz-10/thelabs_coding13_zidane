@@ -225,6 +225,11 @@ return [
 
     'menu' => [
         [
+            'text' => 'blog',
+            'url'  => 'admin/blog',
+            'can'  => 'manage-blog',
+        ],
+        [
             'text'        => 'Site Principal',
             'url'         => '/welcome',
             'icon'        => 'fas fa-undo-alt',
@@ -285,11 +290,16 @@ return [
             'url'        => '/navbar',
         ],
         [
+            'text'       => 'Logo',
+            'icon'       => 'fas fa-image',
+            'url'        => '/logo',
+        ],
+        [
             'text'    => 'Carousel',
 
             'submenu' => [
                 [
-                    'text'       => 'Image Navbar/carousel',
+                    'text'       => 'Image Carousel',
                     'icon'       => 'fas fa-images',
                     'url'        => '#',
                 ],

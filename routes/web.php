@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LogoController;
 use App\Http\Controllers\NavbarController;
 use App\Models\Navbar;
 use Illuminate\Support\Facades\Auth;
@@ -60,3 +61,8 @@ Route::get('/welcome', function () {
 Route::get('/navbar',[NavbarController::class,'index']);
 Route::get('/edit-navbar/{id}', [NavbarController::class, 'edit']);
 Route::post('/update-navbar/{id}', [NavbarController::class, 'update']);
+
+//Logo
+Route::get('/logo',[LogoController::class,'index']);
+Route::get('/edit-logo/{id}', [LogoController::class, 'edit']);
+Route::post('/update-logo/{id}', [LogoController::class, 'update']);

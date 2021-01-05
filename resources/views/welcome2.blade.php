@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<title>Labs - Design Studio</title>
 	<meta charset="UTF-8">
@@ -7,18 +8,18 @@
 	<meta name="keywords" content="lab, onepage, creative, html">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- Favicon -->
-	<link href="img/favicon.ico" rel="shortcut icon"/>
+	<link href="img/favicon.ico" rel="shortcut icon" />
 
 	<!-- Google Fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Oswald:300,400,500,700|Roboto:300,400,700" rel="stylesheet">
 
 	<!-- Stylesheets -->
-	<link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}"/>
-	<link rel="stylesheet" href="{{asset('css/font-awesome.min.css')}}"/>
-	<link rel="stylesheet" href="{{asset('css/flaticon.css')}}"/>
-	<link rel="stylesheet" href="{{asset('css/magnific-popup.css')}}"/>
-	<link rel="stylesheet" href="{{asset('css/owl.carousel.css')}}"/>
-	<link rel="stylesheet" href="{{asset('css/style.css')}}"/>
+	<link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}" />
+	<link rel="stylesheet" href="{{asset('css/font-awesome.min.css')}}" />
+	<link rel="stylesheet" href="{{asset('css/flaticon.css')}}" />
+	<link rel="stylesheet" href="{{asset('css/magnific-popup.css')}}" />
+	<link rel="stylesheet" href="{{asset('css/owl.carousel.css')}}" />
+	<link rel="stylesheet" href="{{asset('css/style.css')}}" />
 
 
 	<!--[if lt IE 9]>
@@ -27,6 +28,7 @@
 	<![endif]-->
 
 </head>
+
 <body>
 	<!-- Page Preloder -->
 	<div id="preloder">
@@ -40,7 +42,7 @@
 	<!-- Header section -->
 	<header class="header-section">
 		<div class="logo">
-			<img src="img/logo.png" alt=""><!-- Logo -->
+			<img src="{{asset('img/imgPetit.png')}}" alt=""><!-- Logo -->
 		</div>
 		<!-- Navigation -->
 		<div class="responsive"><i class="fa fa-bars"></i></div>
@@ -50,6 +52,9 @@
 				<li><a href="/services">{{$navbar->elem2}}</a></li>
 				<li><a href="/blog">{{$navbar->elem3}}</a></li>
 				<li><a href="/contact">{{$navbar->elem4}}</a></li>
+				@auth
+				<li><a href="/home">Admin</a></li>
+				@endauth
 			</ul>
 		</nav>
 	</header>
@@ -60,7 +65,7 @@
 	<div class="hero-section">
 		<div class="hero-content">
 			<div class="hero-center">
-				<img src="img/big-logo.png" alt="">
+				<img src="{{asset('img/imgGrand.png')}}" alt="">
 				<p>Get your freebie template now!</p>
 			</div>
 		</div>
@@ -381,7 +386,7 @@
 		<div class="overlay"></div>
 		<div class="container">
 			<div class="section-title">
-				<h2>Get in <span>the Lab</span> and  meet the team</h2>
+				<h2>Get in <span>the Lab</span> and meet the team</h2>
 			</div>
 			<div class="row">
 				<!-- single member -->
@@ -489,4 +494,5 @@
 	<script src="{{asset('js/circle-progress.min.js')}}"></script>
 	<script src="{{asset('js/main.js')}}"></script>
 </body>
+
 </html>
