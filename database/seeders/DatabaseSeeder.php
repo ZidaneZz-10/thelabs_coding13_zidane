@@ -19,6 +19,8 @@ class DatabaseSeeder extends Seeder
             LogoSeeder::class,
             CarouselSeeder::class,
             TextCarouselSeeder::class,
+            IconSeeder::class,
+            ServiceSeeder::class,
         ]);
     }
 }

@@ -3,8 +3,10 @@
 use App\Http\Controllers\CarouselController;
 use App\Http\Controllers\LogoController;
 use App\Http\Controllers\NavbarController;
+use App\Http\Controllers\ServiceController;
 use App\Models\Carousel;
 use App\Models\Navbar;
+use App\Models\Service;
 use App\Models\TextCarousel;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -59,7 +61,8 @@ Route::get('/welcome', function () {
     $navbar = Navbar::find(1);
     $carouselImg=Carousel::all();
     $textCarousel=TextCarousel::all();
-    return view('welcome2', compact('navbar','carouselImg','textCarousel'));
+    $services=Service::inRandomOrder()->limit(3)->get();
+    return view('welcome2', compact('navbar','carouselImg','textCarousel','services'));
 });
 
 //Navbar
@@ -85,5 +88,12 @@ Route::get('/carouselTxt',[CarouselController::class,'index2']);
 Route::get('/edit-carouselTxt/{id}', [CarouselController::class, 'edit2']);
 Route::post('/update-carouselTxt/{id}', [CarouselController::class, 'update2']);
 
+//services 
+Route::get('/service',[ServiceController::class,'index']);
+Route::get('/create-service',[ServiceController::class,'create']);
+Route::post('/add-service',[ServiceController::class,'store']);
+Route::get('/edit-service/{id}', [ServiceController::class, 'edit']);
+Route::post('/update-service/{id}', [ServiceController::class, 'update']);
+Route::post('/delete-service/{id}', [ServiceController::class, 'destroy']);
 
 

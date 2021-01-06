@@ -310,11 +310,10 @@ return [
                 ],
             ],
         ],
-        
         [
-            'text'       => 'information',
-            'icon_color' => 'cyan',
-            'url'        => '#',
+            'text'       => 'Services',
+            'icon_color' => 'fas fa-cogs',
+            'url'        => '/service',
         ],
     ],
 
