@@ -66,13 +66,16 @@
 		<div class="hero-content">
 			<div class="hero-center">
 				<img src="{{asset('img/imgGrand.png')}}" alt="">
-				<p>Get your freebie template now!</p>
+				@foreach($textCarousel as $text)
+				<p>{{$text->texte}}</p>
+			@endforeach
 			</div>
 		</div>
 		<!-- slider -->
 		<div id="hero-slider" class="owl-carousel">
-			<div class="item  hero-item" data-bg="img/01.jpg"></div>
-			<div class="item  hero-item" data-bg="img/02.jpg"></div>
+			@foreach($carouselImg as $img)
+			<div class="item  hero-item" data-bg="img/{{$img->image}}"></div>
+			@endforeach
 		</div>
 	</div>
 	<!-- Intro Section -->

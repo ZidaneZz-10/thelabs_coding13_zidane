@@ -5,6 +5,7 @@ use App\Http\Controllers\LogoController;
 use App\Http\Controllers\NavbarController;
 use App\Models\Carousel;
 use App\Models\Navbar;
+use App\Models\TextCarousel;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -57,7 +58,8 @@ Route::get('/home', function() {
 Route::get('/welcome', function () {
     $navbar = Navbar::find(1);
     $carouselImg=Carousel::all();
-    return view('welcome2', compact('navbar','carouselImg'));
+    $textCarousel=TextCarousel::all();
+    return view('welcome2', compact('navbar','carouselImg','textCarousel'));
 });
 
 //Navbar
