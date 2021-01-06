@@ -301,12 +301,12 @@ return [
                 [
                     'text'       => 'Image Carousel',
                     'icon'       => 'fas fa-images',
-                    'url'        => '#',
+                    'url'        => '/carouselimg',
                 ],
                 [
                     'text'       => 'texte Carousel',
                     'icon'       => 'fas fa-pen',
-                    'url'        => '#',
+                    'url'        => '/carouselTxt',
                 ],
             ],
         ],

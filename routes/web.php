@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\CarouselController;
 use App\Http\Controllers\LogoController;
 use App\Http\Controllers\NavbarController;
+use App\Models\Carousel;
 use App\Models\Navbar;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -51,10 +53,11 @@ Route::get('/home', function() {
     return view('home');
 })->name('home')->middleware('auth');
 
-// Affichage site principale
+// Affichage vers site principale
 Route::get('/welcome', function () {
     $navbar = Navbar::find(1);
-    return view('welcome2', compact('navbar'));
+    $carouselImg=Carousel::all();
+    return view('welcome2', compact('navbar','carouselImg'));
 });
 
 //Navbar
@@ -66,3 +69,19 @@ Route::post('/update-navbar/{id}', [NavbarController::class, 'update']);
 Route::get('/logo',[LogoController::class,'index']);
 Route::get('/edit-logo/{id}', [LogoController::class, 'edit']);
 Route::post('/update-logo/{id}', [LogoController::class, 'update']);
+
+//carousel
+    //image
+Route::get('/carouselimg',[CarouselController::class,'index']);
+Route::get('/create-carouselimg',[CarouselController::class,'create']);
+Route::post('/add-carouselimg',[CarouselController::class,'store']);
+Route::get('/edit-carouselimg/{id}', [CarouselController::class, 'edit']);
+Route::post('/update-carouselimg/{id}', [CarouselController::class, 'update']);
+Route::post('/delete-carouselimg/{id}', [CarouselController::class, 'destroy']);
+    //texte
+Route::get('/carouselTxt',[CarouselController::class,'index2']);
+Route::get('/edit-carouselTxt/{id}', [CarouselController::class, 'edit2']);
+Route::post('/update-carouselTxt/{id}', [CarouselController::class, 'update2']);
+
+
+
