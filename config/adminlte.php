@@ -330,6 +330,11 @@ return [
             'url'  => '/ready',
             'icon' => 'fas fa-pen',
         ],
+        [
+            'text'    => 'Team',
+            'icon'    => 'fas fa-users',
+            'url'  => '/team',
+        ],
     ],
 
     /*

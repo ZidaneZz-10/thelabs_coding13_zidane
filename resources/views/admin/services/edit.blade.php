@@ -13,9 +13,8 @@
                     <i class="{{$service->icon->lien}}"></i>
                 </div>
                 <select name="icon_id" value="{{old('icon_id')}}"><br>
-                <option value="{{$service->icon->id}}">{{$service->icon->lien}}</option>
                     @foreach($icons as $icon)
-                    <option value="{{$icon->id}}">{{$icon->lien}}</option>
+                    <option value="{{$icon->id}}" {{$service->icon_id == $icon->id  ? 'selected' : ''}}>{{$icon->lien}}</option>
                     @endforeach
                 </select><br>
                 <button class="btn btn-success mt-4">Update</button>

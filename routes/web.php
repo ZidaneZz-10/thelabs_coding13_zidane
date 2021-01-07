@@ -6,11 +6,13 @@ use App\Http\Controllers\NavbarController;
 use App\Http\Controllers\PresentationController;
 use App\Http\Controllers\ReadyController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\TeamController;
 use App\Http\Controllers\VideoController;
 use App\Models\Carousel;
 use App\Models\Navbar;
 use App\Models\Ready;
 use App\Models\Service;
+use App\Models\Team;
 use App\Models\TextCarousel;
 use App\Models\Video;
 use Illuminate\Support\Facades\Auth;
@@ -108,12 +110,20 @@ Route::get('/presentation',[PresentationController::class,'index']);
 Route::get('/edit-presentation/{id}', [PresentationController::class, 'edit']);
 Route::post('/update-presentation/{id}', [PresentationController::class, 'update']);
 
-// video
+// Video
 Route::get('/video',[VideoController::class,'index']);
 Route::get('/edit-video/{id}', [VideoController::class, 'edit']);
 Route::post('/update-video/{id}', [VideoController::class, 'update']);
 
-// ready
+// Ready
 Route::get('/ready',[ReadyController::class,'index']);
 Route::get('/edit-ready/{id}', [ReadyController::class, 'edit']);
 Route::post('/update-ready/{id}', [ReadyController::class, 'update']);
+
+//Team
+Route::get('/team',[TeamController::class,'index']);
+Route::get('/edit-team/{id}', [TeamController::class, 'edit']);
+Route::get('/create-team',[TeamController::class,'create']);
+Route::post('/add-team',[TeamController::class,'store']);
+Route::post('/update-team/{id}', [TeamController::class, 'update']);
+Route::post('/delete-team/{id}', [TeamController::class, 'destroy']);
