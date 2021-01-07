@@ -325,6 +325,11 @@ return [
             'url'  => '/video',
             'icon' => 'fas fa-video',
         ],
+        [
+            'text' => 'Ready',
+            'url'  => '/ready',
+            'icon' => 'fas fa-pen',
+        ],
     ],
 
     /*

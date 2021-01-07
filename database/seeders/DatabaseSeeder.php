@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             ServiceSeeder::class,
             PresentationSeeder::class,
             VideoSeeder::class,
+            ReadySeeder::class,
 
         ]);
     }

@@ -9,6 +9,7 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\VideoController;
 use App\Models\Carousel;
 use App\Models\Navbar;
+use App\Models\Ready;
 use App\Models\Service;
 use App\Models\TextCarousel;
 use App\Models\Video;
@@ -67,7 +68,8 @@ Route::get('/welcome', function () {
     $textCarousel=TextCarousel::all();
     $services=Service::inRandomOrder()->limit(3)->get();
     $video=Video::find(1);
-    return view('welcome2', compact('navbar','carouselImg','textCarousel','services','video'));
+    $ready=Ready::find(1);
+    return view('welcome2', compact('navbar','carouselImg','textCarousel','services','video','ready'));
 });
 
 //Navbar

@@ -14,7 +14,8 @@ class ReadyController extends Controller
      */
     public function index()
     {
-        //
+        $readys=Ready::all();
+        return view('admin.ready.ready',compact('readys'));
     }
 
     /**
@@ -41,23 +42,21 @@ class ReadyController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Ready  $ready
+     * @param  \App\Models\Video  $video
      * @return \Illuminate\Http\Response
      */
-    public function show(Ready $ready)
-    {
-        //
-    }
+    
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Ready  $ready
+     * @param  \App\Models\Video  $video
      * @return \Illuminate\Http\Response
      */
-    public function edit(Ready $ready)
+    public function edit($id)
     {
-        //
+        $ready=Ready::find($id);
+        return view('admin.ready.edit',compact('ready'));
     }
 
     /**
@@ -67,19 +66,21 @@ class ReadyController extends Controller
      * @param  \App\Models\Ready  $ready
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Ready $ready)
+    public function update(Request $request, $id)
     {
-        //
+        $update=Ready::find($id);
+        $update->titre = $request->titre;
+        $update->texte = $request->texte;
+        $update->button = $request->button;
+        $update->save();
+        return redirect('/ready');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Ready  $ready
+     * @param  \App\Models\Video  $video
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Ready $ready)
-    {
-        //
-    }
+   
 }
