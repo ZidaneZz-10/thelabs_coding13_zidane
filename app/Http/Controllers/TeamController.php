@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Team;
+use App\Models\TeamTitle;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -16,7 +17,8 @@ class TeamController extends Controller
     public function index()
     {
         $teams=Team::all();
-        return view("admin.team.team",compact('teams'));
+        $titles=TeamTitle::all();
+        return view("admin.team.team",compact('teams','titles'));
     }
 
     /**
@@ -89,6 +91,13 @@ class TeamController extends Controller
         $update->save();
         // Storage::disk('public')->delete('img/team/' . $update->image);
         $request->file('image')->storePublicly('img/team', 'public');
+        return redirect('/team');
+    }
+    public function update2(Request $request, $id)
+    {
+        $update = TeamTitle::find($id);
+        $update->titre=$request->titre;
+        $update->save();
         return redirect('/team');
     }
 

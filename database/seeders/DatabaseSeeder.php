@@ -25,6 +25,8 @@ class DatabaseSeeder extends Seeder
             VideoSeeder::class,
             ReadySeeder::class,
             TeamSeeder::class,
+            TeamTitleSeeder::class,
+
         ]);
     }
 }

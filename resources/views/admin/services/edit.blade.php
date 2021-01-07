@@ -12,7 +12,7 @@
                 <div class="col icon" style="font-size: 100px;">
                     <i class="{{$service->icon->lien}}"></i>
                 </div>
-                <select name="icon_id" value="{{old('icon_id')}}"><br>
+                <select name="icon_id"><br>
                     @foreach($icons as $icon)
                     <option value="{{$icon->id}}" {{$service->icon_id == $icon->id  ? 'selected' : ''}}>{{$icon->lien}}</option>
                     @endforeach

@@ -127,3 +127,5 @@ Route::get('/create-team',[TeamController::class,'create']);
 Route::post('/add-team',[TeamController::class,'store']);
 Route::post('/update-team/{id}', [TeamController::class, 'update']);
 Route::post('/delete-team/{id}', [TeamController::class, 'destroy']);
+// Update Title Team
+Route::post('/update-title/{id}', [TeamController::class, 'update2']);
