@@ -4,11 +4,14 @@ use App\Http\Controllers\CarouselController;
 use App\Http\Controllers\LogoController;
 use App\Http\Controllers\NavbarController;
 use App\Http\Controllers\PresentationController;
+use App\Http\Controllers\ReadyController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\VideoController;
 use App\Models\Carousel;
 use App\Models\Navbar;
 use App\Models\Service;
 use App\Models\TextCarousel;
+use App\Models\Video;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -63,7 +66,8 @@ Route::get('/welcome', function () {
     $carouselImg=Carousel::all();
     $textCarousel=TextCarousel::all();
     $services=Service::inRandomOrder()->limit(3)->get();
-    return view('welcome2', compact('navbar','carouselImg','textCarousel','services'));
+    $video=Video::find(1);
+    return view('welcome2', compact('navbar','carouselImg','textCarousel','services','video'));
 });
 
 //Navbar
@@ -101,3 +105,13 @@ Route::post('/delete-service/{id}', [ServiceController::class, 'destroy']);
 Route::get('/presentation',[PresentationController::class,'index']);
 Route::get('/edit-presentation/{id}', [PresentationController::class, 'edit']);
 Route::post('/update-presentation/{id}', [PresentationController::class, 'update']);
+
+// video
+Route::get('/video',[VideoController::class,'index']);
+Route::get('/edit-video/{id}', [VideoController::class, 'edit']);
+Route::post('/update-video/{id}', [VideoController::class, 'update']);
+
+// ready
+Route::get('/ready',[ReadyController::class,'index']);
+Route::get('/edit-ready/{id}', [ReadyController::class, 'edit']);
+Route::post('/update-ready/{id}', [ReadyController::class, 'update']);

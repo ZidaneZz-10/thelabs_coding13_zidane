@@ -320,6 +320,11 @@ return [
             'icon'       => 'fas fa-handshake',
             'url'        => '/presentation',
         ],
+        [
+            'text' => 'Video',
+            'url'  => '/video',
+            'icon' => 'fas fa-video',
+        ],
     ],
 
     /*

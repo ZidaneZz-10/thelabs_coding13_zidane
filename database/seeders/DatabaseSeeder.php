@@ -22,6 +22,8 @@ class DatabaseSeeder extends Seeder
             IconSeeder::class,
             ServiceSeeder::class,
             PresentationSeeder::class,
+            VideoSeeder::class,
+
         ]);
     }
 }
