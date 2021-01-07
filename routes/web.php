@@ -3,6 +3,7 @@
 use App\Http\Controllers\CarouselController;
 use App\Http\Controllers\LogoController;
 use App\Http\Controllers\NavbarController;
+use App\Http\Controllers\PresentationController;
 use App\Http\Controllers\ServiceController;
 use App\Models\Carousel;
 use App\Models\Navbar;
@@ -95,5 +96,8 @@ Route::post('/add-service',[ServiceController::class,'store']);
 Route::get('/edit-service/{id}', [ServiceController::class, 'edit']);
 Route::post('/update-service/{id}', [ServiceController::class, 'update']);
 Route::post('/delete-service/{id}', [ServiceController::class, 'destroy']);
-
-
+ 
+//Presentation
+Route::get('/presentation',[PresentationController::class,'index']);
+Route::get('/edit-presentation/{id}', [PresentationController::class, 'edit']);
+Route::post('/update-presentation/{id}', [PresentationController::class, 'update']);

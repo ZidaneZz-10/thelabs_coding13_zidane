@@ -315,6 +315,11 @@ return [
             'icon_color' => 'fas fa-cogs',
             'url'        => '/service',
         ],
+        [
+            'text'       => 'Presentation',
+            'icon'       => 'fas fa-handshake',
+            'url'        => '/presentation',
+        ],
     ],
 
     /*
