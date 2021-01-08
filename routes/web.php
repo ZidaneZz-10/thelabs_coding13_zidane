@@ -7,6 +7,7 @@ use App\Http\Controllers\PresentationController;
 use App\Http\Controllers\ReadyController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\TeamController;
+use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\VideoController;
 use App\Models\Carousel;
 use App\Models\Navbar;
@@ -129,3 +130,12 @@ Route::post('/update-team/{id}', [TeamController::class, 'update']);
 Route::post('/delete-team/{id}', [TeamController::class, 'destroy']);
 // Update Title Team
 Route::post('/update-title/{id}', [TeamController::class, 'update2']);
+
+//testimonials
+Route::get('/testimonials',[TestimonialController::class,'index']);
+Route::get('/edit-testimonial/{id}', [TestimonialController::class, 'edit']);
+Route::get('/create-testimonial',[TestimonialController::class,'create']);
+Route::post('/add-testimonial',[TestimonialController::class,'store']);
+Route::post('/update-testimonial/{id}', [TestimonialController::class, 'update']);
+Route::post('/delete-testimonial/{id}', [TestimonialController::class, 'destroy']);
+

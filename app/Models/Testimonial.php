@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Testimonial extends Model
 {
     use HasFactory;
+    public function team()
+    {
+        return $this->belongsTo('App\Models\Team','team_id');
+    }
 }

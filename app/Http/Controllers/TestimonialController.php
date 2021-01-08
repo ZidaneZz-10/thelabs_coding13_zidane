@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Team;
 use App\Models\Testimonial;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,8 @@ class TestimonialController extends Controller
      */
     public function index()
     {
-        //
+        $testimonials=Testimonial::all();
+        return view('admin.testimonials.testimonials',compact('testimonials'));
     }
 
     /**
@@ -24,7 +26,8 @@ class TestimonialController extends Controller
      */
     public function create()
     {
-        //
+        $teams=Team::all();
+        return view('admin.testimonials.create',compact('teams'));
     }
 
     /**
@@ -35,7 +38,11 @@ class TestimonialController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $newTestimonial= new Testimonial;
+        $newTestimonial->avis=$request->avis;
+        $newTestimonial->team_id=$request->team_id;
+        $newTestimonial->save();
+        return redirect('/testimonials');
     }
 
     /**
@@ -55,9 +62,11 @@ class TestimonialController extends Controller
      * @param  \App\Models\Testimonial  $testimonial
      * @return \Illuminate\Http\Response
      */
-    public function edit(Testimonial $testimonial)
+    public function edit($id)
     {
-        //
+        $teams=Team::all();
+        $testimonial=Testimonial::find($id);
+        return view('admin.testimonials.edit',compact('testimonial','teams'));
     }
 
     /**
@@ -67,9 +76,13 @@ class TestimonialController extends Controller
      * @param  \App\Models\Testimonial  $testimonial
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Testimonial $testimonial)
+    public function update(Request $request, $id)
     {
-        //
+        $update=Testimonial::find($id);
+        $update->avis = $request->avis;
+        $update->team_id = $request->team_id;
+        $update->save();
+        return redirect('/testimonials');
     }
 
     /**
@@ -78,8 +91,10 @@ class TestimonialController extends Controller
      * @param  \App\Models\Testimonial  $testimonial
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Testimonial $testimonial)
+    public function destroy($id)
     {
-        //
+        $delete = Testimonial::find($id);
+        $delete->delete();
+        return redirect()->back();
     }
 }

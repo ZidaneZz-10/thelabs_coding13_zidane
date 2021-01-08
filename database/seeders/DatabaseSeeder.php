@@ -26,7 +26,7 @@ class DatabaseSeeder extends Seeder
             ReadySeeder::class,
             TeamSeeder::class,
             TeamTitleSeeder::class,
-
+            TestimonialSeeder::class,
         ]);
     }
 }
