@@ -77,7 +77,11 @@ Route::get('/welcome', function () {
     $navbar = Navbar::find(1);
     $carouselImg=Carousel::all();
     $textCarousel=TextCarousel::all();
-    $services=Service::inRandomOrder()->limit(3)->get();
+    // 3 cartes random
+    $serviceCards=Service::inRandomOrder()->limit(3)->get();
+
+    //pagination des services par 9 (reverse)
+    $services=Service::orderByDesc('id')->Paginate(9);
 
     $serviceTitle=ServiceTitle::find(1);
     $titre1=Str::of($serviceTitle->titre)->replace('(','<span>');
@@ -87,7 +91,7 @@ Route::get('/welcome', function () {
     $titre2=Str::of($teamTitle->titre)->replace('(','<span>');
     $str4=Str::of($titre2)->replace(')','</span>');
 
-    $presentation=TeamTitle::find(1);
+    $presentation=Presentation::find(1);
     $str=Str::of($presentation->titre)->replace('(','<span>');
     $str2=Str::of($str)->replace(')','</span>');
 
@@ -96,7 +100,7 @@ Route::get('/welcome', function () {
     $ready=Ready::find(1);
     $contact=Contact::find(1);
     $contactIntro=ContactIntro::find(1);
-    return view('welcome2', compact('navbar','carouselImg','textCarousel','services','presentation','video','ready','contact','contactIntro','str2','str3','serviceTitle','str4','teamTitle','testimonialTitle'));
+    return view('welcome2', compact('navbar','carouselImg','textCarousel','serviceCards','services','presentation','video','ready','contact','contactIntro','str2','str3','serviceTitle','str4','teamTitle','testimonialTitle'));
 });
 
 //Navbar
