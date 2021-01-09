@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CarouselController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\LogoController;
 use App\Http\Controllers\NavbarController;
 use App\Http\Controllers\PresentationController;
@@ -10,6 +11,8 @@ use App\Http\Controllers\TeamController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\VideoController;
 use App\Models\Carousel;
+use App\Models\Contact;
+use App\Models\ContactIntro;
 use App\Models\Navbar;
 use App\Models\Ready;
 use App\Models\Service;
@@ -72,7 +75,9 @@ Route::get('/welcome', function () {
     $services=Service::inRandomOrder()->limit(3)->get();
     $video=Video::find(1);
     $ready=Ready::find(1);
-    return view('welcome2', compact('navbar','carouselImg','textCarousel','services','video','ready'));
+    $contact=Contact::find(1);
+    $contactIntro=ContactIntro::find(1);
+    return view('welcome2', compact('navbar','carouselImg','textCarousel','services','video','ready','contact','contactIntro'));
 });
 
 //Navbar
@@ -139,3 +144,9 @@ Route::post('/add-testimonial',[TestimonialController::class,'store']);
 Route::post('/update-testimonial/{id}', [TestimonialController::class, 'update']);
 Route::post('/delete-testimonial/{id}', [TestimonialController::class, 'destroy']);
 
+//contact
+Route::get('/contact',[ContactController::class,'index']);
+Route::get('/edit-contact/{id}', [ContactController::class, 'edit']);
+Route::get('/edit-contactIntro/{id}', [ContactController::class, 'edit2']);
+Route::post('/update-contact/{id}', [ContactController::class, 'update']);
+Route::post('/update-contactIntro/{id}', [ContactController::class, 'update2']);

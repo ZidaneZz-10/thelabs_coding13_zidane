@@ -340,6 +340,11 @@ return [
             'icon'    => 'fas fa-gavel',
             'url'  => '/testimonials',
         ],
+        [
+            'text'    => 'Contact',
+            'icon'    => 'fas fa-info',
+            'url'  => '/contact',
+        ],
     ],
 
     /*
