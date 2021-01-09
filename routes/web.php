@@ -14,9 +14,14 @@ use App\Models\Carousel;
 use App\Models\Contact;
 use App\Models\ContactIntro;
 use App\Models\Navbar;
+use App\Models\Presentation;
 use App\Models\Ready;
 use App\Models\Service;
+use App\Models\ServiceTitle;
+use Illuminate\Support\Str;
 use App\Models\Team;
+use App\Models\TeamTitle;
+use App\Models\TestimonialTitle;
 use App\Models\TextCarousel;
 use App\Models\Video;
 use Illuminate\Support\Facades\Auth;
@@ -73,11 +78,25 @@ Route::get('/welcome', function () {
     $carouselImg=Carousel::all();
     $textCarousel=TextCarousel::all();
     $services=Service::inRandomOrder()->limit(3)->get();
+
+    $serviceTitle=ServiceTitle::find(1);
+    $titre1=Str::of($serviceTitle->titre)->replace('(','<span>');
+    $str3=Str::of($titre1)->replace(')','</span>');
+
+    $teamTitle=TeamTitle::find(1);
+    $titre2=Str::of($teamTitle->titre)->replace('(','<span>');
+    $str4=Str::of($titre2)->replace(')','</span>');
+
+    $presentation=TeamTitle::find(1);
+    $str=Str::of($presentation->titre)->replace('(','<span>');
+    $str2=Str::of($str)->replace(')','</span>');
+
     $video=Video::find(1);
+    $testimonialTitle=TestimonialTitle::find(1);
     $ready=Ready::find(1);
     $contact=Contact::find(1);
     $contactIntro=ContactIntro::find(1);
-    return view('welcome2', compact('navbar','carouselImg','textCarousel','services','video','ready','contact','contactIntro'));
+    return view('welcome2', compact('navbar','carouselImg','textCarousel','services','presentation','video','ready','contact','contactIntro','str2','str3','serviceTitle','str4','teamTitle','testimonialTitle'));
 });
 
 //Navbar
@@ -110,6 +129,8 @@ Route::post('/add-service',[ServiceController::class,'store']);
 Route::get('/edit-service/{id}', [ServiceController::class, 'edit']);
 Route::post('/update-service/{id}', [ServiceController::class, 'update']);
 Route::post('/delete-service/{id}', [ServiceController::class, 'destroy']);
+// Update Title Service
+Route::post('/update-titleService/{id}', [ServiceController::class, 'update2']);
  
 //Presentation
 Route::get('/presentation',[PresentationController::class,'index']);
@@ -143,6 +164,9 @@ Route::get('/create-testimonial',[TestimonialController::class,'create']);
 Route::post('/add-testimonial',[TestimonialController::class,'store']);
 Route::post('/update-testimonial/{id}', [TestimonialController::class, 'update']);
 Route::post('/delete-testimonial/{id}', [TestimonialController::class, 'destroy']);
+// Update Title Service
+Route::post('/update-titleAvis/{id}', [TestimonialController::class, 'update2']);
+ 
 
 //contact
 Route::get('/contact',[ContactController::class,'index']);

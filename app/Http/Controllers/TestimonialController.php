@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Team;
 use App\Models\Testimonial;
+use App\Models\TestimonialTitle;
 use Illuminate\Http\Request;
 
 class TestimonialController extends Controller
@@ -16,7 +17,8 @@ class TestimonialController extends Controller
     public function index()
     {
         $testimonials=Testimonial::all();
-        return view('admin.testimonials.testimonials',compact('testimonials'));
+        $titles=TestimonialTitle::all();
+        return view('admin.testimonials.testimonials',compact('testimonials','titles'));
     }
 
     /**
@@ -84,7 +86,13 @@ class TestimonialController extends Controller
         $update->save();
         return redirect('/testimonials');
     }
-
+    public function update2(Request $request, $id)
+    {
+        $update = TestimonialTitle::find($id);
+        $update->titre=$request->titre;
+        $update->save();
+        return redirect('/testimonials');
+    }
     /**
      * Remove the specified resource from storage.
      *

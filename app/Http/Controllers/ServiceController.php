@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Icon;
 use App\Models\Service;
+use App\Models\ServiceTitle;
 use Illuminate\Http\Request;
 
 class ServiceController extends Controller
@@ -16,7 +17,8 @@ class ServiceController extends Controller
     public function index()
     {
         $services=Service::all();
-        return view('admin.services.services',compact('services'));
+        $titles=ServiceTitle::all();
+        return view('admin.services.services',compact('services','titles'));
     }
 
     /**
@@ -83,6 +85,13 @@ class ServiceController extends Controller
         $update->titre = $request->titre;
         $update->texte = $request->texte;
         $update->icon_id = $request->icon_id;
+        $update->save();
+        return redirect('/service');
+    }
+    public function update2(Request $request, $id)
+    {
+        $update = ServiceTitle::find($id);
+        $update->titre=$request->titre;
         $update->save();
         return redirect('/service');
     }
