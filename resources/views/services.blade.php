@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<title>Labs - Design Studio</title>
 	<meta charset="UTF-8">
@@ -7,18 +8,18 @@
 	<meta name="keywords" content="lab, onepage, creative, html">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- Favicon -->
-	<link href="img/favicon.ico" rel="shortcut icon"/>
+	<link href="img/favicon.ico" rel="shortcut icon" />
 
 	<!-- Google Fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Oswald:300,400,500,700|Roboto:300,400,700" rel="stylesheet">
 
 	<!-- Stylesheets -->
-	<link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}"/>
-	<link rel="stylesheet" href="{{asset('css/font-awesome.min.css')}}"/>
-	<link rel="stylesheet" href="{{asset('css/flaticon.css')}}"/>
-	<link rel="stylesheet" href="{{asset('css/magnific-popup.css')}}"/>
-	<link rel="stylesheet" href="{{asset('css/owl.carousel.css')}}"/>
-	<link rel="stylesheet" href="{{asset('css/style.css')}}"/>
+	<link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}" />
+	<link rel="stylesheet" href="{{asset('css/font-awesome.min.css')}}" />
+	<link rel="stylesheet" href="{{asset('css/flaticon.css')}}" />
+	<link rel="stylesheet" href="{{asset('css/magnific-popup.css')}}" />
+	<link rel="stylesheet" href="{{asset('css/owl.carousel.css')}}" />
+	<link rel="stylesheet" href="{{asset('css/style.css')}}" />
 
 
 	<!--[if lt IE 9]>
@@ -27,6 +28,7 @@
 	<![endif]-->
 
 </head>
+
 <body>
 	<!-- Page Preloder -->
 	<div id="preloder">
@@ -46,7 +48,7 @@
 		<div class="responsive"><i class="fa fa-bars"></i></div>
 		<nav>
 			<ul class="menu-list">
-			<li><a href="/welcome">Home</a></li>
+				<li><a href="/welcome">Home</a></li>
 				<li class="active"><a href="/services">Services</a></li>
 				<li><a href="/blog">Blog</a></li>
 				<li><a href="/contact">Contact</a></li>
@@ -76,117 +78,24 @@
 	<div class="services-section spad">
 		<div class="container">
 			<div class="section-title dark">
-				<h2>Get in <span>the Lab</span> and see the services</h2>
+				<h2>{!! $str3 !!}</h2>
 			</div>
 			<div class="row">
+				@foreach($services as $service)
 				<!-- single service -->
 				<div class="col-md-4 col-sm-6">
 					<div class="service">
 						<div class="icon">
-							<i class="flaticon-023-flask"></i>
+							<i class="{{$service->icon->lien}}"></i>
 						</div>
 						<div class="service-text">
-							<h2>Get in the lab</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla..</p>
+							<h2>{{$service->titre}}</h2>
+							<p>{{$service->texte}}</p>
 						</div>
 					</div>
 				</div>
-				<!-- single service -->
-				<div class="col-md-4 col-sm-6">
-					<div class="service">
-						<div class="icon">
-							<i class="flaticon-011-compass"></i>
-						</div>
-						<div class="service-text">
-							<h2>Projects online</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla..</p>
-						</div>
-					</div>
-				</div>
-				<!-- single service -->
-				<div class="col-md-4 col-sm-6">
-					<div class="service">
-						<div class="icon">
-							<i class="flaticon-037-idea"></i>
-						</div>
-						<div class="service-text">
-							<h2>SMART MARKETING</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla..</p>
-						</div>
-					</div>
-				</div>
-				<!-- single service -->
-				<div class="col-md-4 col-sm-6">
-					<div class="service">
-						<div class="icon">
-							<i class="flaticon-039-vector"></i>
-						</div>
-						<div class="service-text">
-							<h2>Social Media</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla..</p>
-						</div>
-					</div>
-				</div>
-				<!-- single service -->
-				<div class="col-md-4 col-sm-6">
-					<div class="service">
-						<div class="icon">
-							<i class="flaticon-036-brainstorming"></i>
-						</div>
-						<div class="service-text">
-							<h2>Brainstorming</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla..</p>
-						</div>
-					</div>
-				</div>
-				<!-- single service -->
-				<div class="col-md-4 col-sm-6">
-					<div class="service">
-						<div class="icon">
-							<i class="flaticon-026-search"></i>
-						</div>
-						<div class="service-text">
-							<h2>Documented</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla..</p>
-						</div>
-					</div>
-				</div>
-				<!-- single service -->
-				<div class="col-md-4 col-sm-6">
-					<div class="service">
-						<div class="icon">
-							<i class="flaticon-018-laptop-1"></i>
-						</div>
-						<div class="service-text">
-							<h2>Responsive</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla..</p>
-						</div>
-					</div>
-				</div>
-				<!-- single service -->
-				<div class="col-md-4 col-sm-6">
-					<div class="service">
-						<div class="icon">
-							<i class="flaticon-043-sketch"></i>
-						</div>
-						<div class="service-text">
-							<h2>Retina ready</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla..</p>
-						</div>
-					</div>
-				</div>
-				<!-- single service -->
-				<div class="col-md-4 col-sm-6">
-					<div class="service">
-						<div class="icon">
-							<i class="flaticon-012-cube"></i>
-						</div>
-						<div class="service-text">
-							<h2>Ultra modern</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla..</p>
-						</div>
-					</div>
-				</div>
+				@endforeach
+
 			</div>
 			<div class="text-center">
 				<a href="" class="site-btn">Browse</a>
@@ -201,86 +110,65 @@
 		<div class="overlay"></div>
 		<div class="container">
 			<div class="section-title">
-				<h2>Get in <span>the Lab</span> and  discover the world</h2>
+				<h2>Get in <span>the Lab</span> and discover the world</h2>
 			</div>
+					<!-- features section -->
 			<div class="row">
 				<!-- feature item -->
 				<div class="col-md-4 col-sm-4 features">
-					<div class="icon-box light left">
-						<div class="service-text">
-							<h2>Get in the lab</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur ad ipiscing elit. Curabitur leo est, feugiat nec</p>
+					@foreach ($servicePrime->take(3) as $item)
+						
+							<div class="icon-box light left">
+								<div class="service-text">
+									<h2>{{$item->titre}}</h2>
+									<p>{{$item->texte}}</p>
+								</div>
+								<div class="icon">
+									<i class="{{$item->icon->lien}}"></i>
+								</div>
+							</div>
+						<div style="display: none;">
+							{{$limite=$item->id}}
 						</div>
-						<div class="icon">
-							<i class="flaticon-002-caliper"></i>
-						</div>
-					</div>
-					<!-- feature item -->
-					<div class="icon-box light left">
-						<div class="service-text">
-							<h2>Projects online</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur ad ipiscing elit. Curabitur leo est, feugiat nec</p>
-						</div>
-						<div class="icon">
-							<i class="flaticon-019-coffee-cup"></i>
-						</div>
-					</div>
-					<!-- feature item -->
-					<div class="icon-box light left">
-						<div class="service-text">
-							<h2>SMART MARKETING</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur ad ipiscing elit. Curabitur leo est, feugiat nec</p>
-						</div>
-						<div class="icon">
-							<i class="flaticon-020-creativity"></i>
-						</div>
-					</div>
+						
+					@endforeach
+					
+
 				</div>
 				<!-- Devices -->
 				<div class="col-md-4 col-sm-4 devices">
-					<div class="text-center">
+					<div class="texte-center">
 						<img src="img/device.png" alt="">
 					</div>
 				</div>
 				<!-- feature item -->
 				<div class="col-md-4 col-sm-4 features">
-					<div class="icon-box light">
-						<div class="icon">
-							<i class="flaticon-037-idea"></i>
-						</div>
-						<div class="service-text">
-							<h2>Get in the lab</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur ad ipiscing elit. Curabitur leo est, feugiat nec</p>
-						</div>
-					</div>
-					<!-- feature item -->
-					<div class="icon-box light">
-						<div class="icon">
-							<i class="flaticon-025-imagination"></i>
-						</div>
-						<div class="service-text">
-							<h2>Projects online</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur ad ipiscing elit. Curabitur leo est, feugiat nec</p>
-						</div>
-					</div>
-					<!-- feature item -->
-					<div class="icon-box light">
-						<div class="icon">
-							<i class="flaticon-008-team"></i>
-						</div>
-						<div class="service-text">
-							<h2>SMART MARKETING</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur ad ipiscing elit. Curabitur leo est, feugiat nec</p>
-						</div>
-					</div>
+					@foreach ($servicePrime->take(6) as $item)
+						
+						@if ($item->id < $limite )
+							<div class="icon-box light left">
+								<div class="service-text">
+									<h2>{{$item->titre}}</h2>
+									<p>{{$item->texte}}</p>
+								</div>
+								<div class="icon">
+									<i class="{{$item->icon->lien}}"></i>
+								</div>
+							</div>
+						
+							
+						
+						@endif
+					@endforeach
 				</div>
 			</div>
 			<div class="text-center mt100">
-				<a href="" class="site-btn">Browse</a>
+				<a href="#3cards" class="site-btn">Browse</a>
 			</div>
 		</div>
 	</div>
 	<!-- features section end-->
+
 
 
 	<!-- services card section-->
@@ -405,4 +293,5 @@
 	<script src="{{asset('js/circle-progress.min.js')}}"></script>
 	<script src="{{asset('js/main.js')}}"></script>
 </body>
+
 </html>

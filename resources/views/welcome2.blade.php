@@ -251,18 +251,18 @@
 			</div>
 			<div class="row">
 				@foreach($services as $service)
-					<!-- single service -->
-					<div class="col-md-4 col-sm-6">
-						<div class="service">
-							<div class="icon">
-								<i class="{{$service->icon->lien}}"></i>
-							</div>
-							<div class="service-text">
-								<h2>{{$service->titre}}</h2>
-								<p>{{$service->texte}}</p>
-							</div>
+				<!-- single service -->
+				<div class="col-md-4 col-sm-6">
+					<div class="service">
+						<div class="icon">
+							<i class="{{$service->icon->lien}}"></i>
+						</div>
+						<div class="service-text">
+							<h2>{{$service->titre}}</h2>
+							<p>{{$service->texte}}</p>
 						</div>
 					</div>
+				</div>
 				@endforeach
 			</div>
 			<div class="text-center ">{{$services->links()}}</div>
@@ -282,32 +282,63 @@
 				<h2>{!! $str4 !!}</h2>
 			</div>
 			<div class="row">
+
+				@foreach ($teams as $item)
+
+				@if ($item->fonction != 'CEO' && $ok != 2)
+
 				<!-- single member -->
 				<div class="col-sm-4">
 					<div class="member">
-						<img src="img/team/1.jpg" alt="">
-						<h2>Christinne Williams</h2>
-						<h3>Project Manager</h3>
+						<img src="{{asset('img/team/'.$item->image)}}" alt="">
+						<h2>{{$item->nom}}</h2>
+						<h3>{{$item->fonction}}</h3>
 					</div>
 				</div>
-				<!-- single member -->
+				<div style="display: none;">{{$ok++}}</div>
+				<div style="display: none;">{{$counter = $item->id}}</div>
+
+				@endif
+				@endforeach
+
+				@foreach ($teams as $item)
+
+				@if ($item->fonction == 'CEO')
+
 				<div class="col-sm-4">
 					<div class="member">
-						<img src="img/team/2.jpg" alt="">
-						<h2>Christinne Williams</h2>
-						<h3>Junior developer</h3>
+						<img src="{{asset('img/team/'.$item->image)}}" alt="">
+						<h2>{{$item->nom}}</h2>
+						<h3>{{$item->fonction}}</h3>
 					</div>
 				</div>
-				<!-- single member -->
+
+
+				@endif
+
+				@endforeach
+
+				<div style="display: none;">{{$ok=1}}</div>
+				@foreach ($teams as $item)
+
+				@if ($item->fonction != 'CEO' && $item->id != $counter && $ok != 2)
+
 				<div class="col-sm-4">
 					<div class="member">
-						<img src="img/team/3.jpg" alt="">
-						<h2>Christinne Williams</h2>
-						<h3>Digital designer</h3>
+						<img src="{{asset('img/team/'.$item->image)}}" alt="">
+						<h2>{{$item->nom}}</h2>
+						<h3>{{$item->fonction}}</h3>
 					</div>
 				</div>
+
+				<div style="display: none;">{{$ok++}}</div>
+				@endif
+
+
+				@endforeach
 			</div>
 		</div>
+	</div>
 	</div>
 	<!-- Team Section end-->
 
