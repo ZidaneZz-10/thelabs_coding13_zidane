@@ -345,6 +345,21 @@ return [
             'icon'    => 'fas fa-info',
             'url'  => '/contact',
         ],
+        [
+            'text'        => 'Tags',
+            'url'         => '/tag',
+            'icon'        => 'fas fa-tags',
+        ],
+        [
+            'text'        => 'Categotie',
+            'url'         => '/categorie',
+            'icon'        => 'fas fa-tags',
+        ],
+        [
+            'text'        => 'Article',
+            'url'         => '/articles',
+            'icon'        => 'fas fa-file-pdf',
+        ],
     ],
 
     /*

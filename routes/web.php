@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CarouselController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\LogoController;
@@ -194,3 +195,6 @@ Route::get('/edit-contact/{id}', [ContactController::class, 'edit']);
 Route::get('/edit-contactIntro/{id}', [ContactController::class, 'edit2']);
 Route::post('/update-contact/{id}', [ContactController::class, 'update']);
 Route::post('/update-contactIntro/{id}', [ContactController::class, 'update2']);
+
+//Articles
+Route::get('/articles', [ArticleController::class, 'index']);

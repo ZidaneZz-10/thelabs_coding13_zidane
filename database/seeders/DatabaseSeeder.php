@@ -31,6 +31,8 @@ class DatabaseSeeder extends Seeder
             ContactIntroSeeder::class,
             ServiceTitleSeeder::class,    
             TestimonialTitleSeeder::class,
+            TagSeeder::class,
+            ArticleSeeder::class,
         ]);
     }
 }
