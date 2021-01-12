@@ -59,9 +59,10 @@ class ArticleController extends Controller
      * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function show(Article $article)
+    public function show($id)
     {
-        //
+        $article=Article::find($id);
+        return view("admin.article.show",compact('article'));
     }
 
     /**
@@ -99,6 +100,9 @@ class ArticleController extends Controller
     public function destroy($id)
     {
         $delete=Article::find($id);
+        Article::find($id)->tags()->detach();
+        Article::find($id)->categories()->detach();
+        Article::find($id)->commentaires()->detach();
         $delete->delete();
         return redirect()->back();
     }

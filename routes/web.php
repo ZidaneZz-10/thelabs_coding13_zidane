@@ -3,6 +3,7 @@
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CarouselController;
 use App\Http\Controllers\CategorieController;
+use App\Http\Controllers\CommentaireController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\LogoController;
 use App\Http\Controllers\NavbarController;
@@ -14,6 +15,7 @@ use App\Http\Controllers\TeamController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\VideoController;
 use App\Models\Carousel;
+use App\Models\Commentaire;
 use App\Models\Contact;
 use App\Models\ContactIntro;
 use App\Models\Navbar;
@@ -205,6 +207,8 @@ Route::post('/add-article', [ArticleController::class, 'store']);
 Route::get('/edit-article/{id}', [ArticleController::class, 'edit']);
 Route::post('/update-article/{id}', [ArticleController::class, 'update']);
 Route::post('/delete-article/{id}', [ArticleController::class, 'destroy']);
+Route::get('/article/{id}',[ArticleController::class,'show']);
+
 
 //Categories
 Route::get('/categories', [CategorieController::class, 'index']);
@@ -219,3 +223,6 @@ Route::post('/add-tag', [TagController::class, 'store']);
 Route::get('/edit-tag/{id}', [TagController::class, 'edit']);
 Route::post('/update-tag/{id}', [TagController::class, 'update']);
 Route::post('/delete-tag/{id}', [TagController::class, 'destroy']);
+
+//comments
+Route::post('/delete-comment/{id}', [CommentaireController::class, 'destroy']);

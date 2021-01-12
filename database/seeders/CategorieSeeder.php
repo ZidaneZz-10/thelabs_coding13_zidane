@@ -16,12 +16,6 @@ class CategorieSeeder extends Seeder
     {
         DB::table('categories')->insert(
             [
-                
-
-
-
-
-
                 [
                     'titre' => "Vestibulum maximus",
                 ],
