@@ -47,7 +47,7 @@ class ArticleController extends Controller
         $newArticle->texte=$request->texte;
         $newArticle->user_id=Auth::id();
         $newArticle->save();
-        $request->file('image')->storePublicly('images', 'public');
+        $request->file('image')->storePublicly('img', 'public');
         $newArticle->tags()->syncWithoutDetaching($request->tags);
         $newArticle->categories()->syncWithoutDetaching($request->cats);
         return redirect('/articles');
