@@ -32,6 +32,7 @@ class DatabaseSeeder extends Seeder
             ServiceTitleSeeder::class,    
             TestimonialTitleSeeder::class,
             TagSeeder::class,
+            CategorieSeeder::class,
             ArticleSeeder::class,
         ]);
     }

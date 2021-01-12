@@ -12,4 +12,12 @@ class Article extends Model
     {
         return $this->belongsToMany(Tag::class);
     }
+    public function categories()
+    {
+        return $this->belongsToMany(Categorie::class);
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

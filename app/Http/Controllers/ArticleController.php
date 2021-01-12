@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Models\Categorie;
 use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ArticleController extends Controller
 {
@@ -15,8 +17,8 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $tags=Tag::all();
-        return view('admin.article.article',compact("tags"));
+        $articles=Article::all();
+        return view('admin.article.article',compact('articles'));
     }
 
     /**
@@ -26,7 +28,9 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        //
+        $tags=Tag::all();
+        $categories=Categorie::all();
+        return view('admin.article.create',compact("tags",'categories'));
     }
 
     /**
@@ -38,13 +42,15 @@ class ArticleController extends Controller
     public function store(Request $request)
     {
         $newArticle= new Article;
-        $newArticle->image=$request->image;
+        $newArticle->image = $request->file('image')->hashName();
         $newArticle->titre=$request->titre;
-        $newArticle->auteur_id=$request->auteur_id;
-        $newArticle->date=$request->date;
+        $newArticle->texte=$request->texte;
+        $newArticle->user_id=Auth::id();
         $newArticle->save();
+        $request->file('image')->storePublicly('images', 'public');
         $newArticle->tags()->syncWithoutDetaching($request->tags);
-        return redirect()->back();
+        $newArticle->categories()->syncWithoutDetaching($request->cats);
+        return redirect('/articles');
     }
 
     /**
@@ -64,9 +70,12 @@ class ArticleController extends Controller
      * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function edit(Article $article)
+    public function edit($id)
     {
-        //
+        $article=Article::find($id);
+        $tags=Tag::all();
+        $categories=Categorie::all();
+        return view('admin.article.edit',compact('article','tags','categories'));
     }
 
     /**
@@ -87,8 +96,10 @@ class ArticleController extends Controller
      * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Article $article)
+    public function destroy($id)
     {
-        //
+        $delete=Article::find($id);
+        $delete->delete();
+        return redirect()->back();
     }
 }

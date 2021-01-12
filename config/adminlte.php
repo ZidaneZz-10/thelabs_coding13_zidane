@@ -296,7 +296,6 @@ return [
         ],
         [
             'text'    => 'Carousel',
-
             'submenu' => [
                 [
                     'text'       => 'Image Carousel',
@@ -347,19 +346,30 @@ return [
         ],
         [
             'text'        => 'Tags',
-            'url'         => '/tag',
+            'url'         => '/tags',
             'icon'        => 'fas fa-tags',
         ],
         [
-            'text'        => 'Categotie',
-            'url'         => '/categorie',
+            'text'        => 'Categorie',
+            'url'         => '/categories',
             'icon'        => 'fas fa-tags',
         ],
-        [
-            'text'        => 'Article',
-            'url'         => '/articles',
-            'icon'        => 'fas fa-file-pdf',
+        
+
+        ['text'    => 'Articles',
+        'submenu' => [
+            [
+                'text'        => 'Create Article',
+                'url'         => '/create-article',
+                'icon'        => 'fas fa-file-pdf',
+            ],
+            [
+                'text'       => 'Articles',
+                'url'         => '/articles',
+                'icon'        => 'fas fa-file-pdf',
+            ],
         ],
+    ],
     ],
 
     /*

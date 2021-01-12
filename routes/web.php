@@ -2,12 +2,14 @@
 
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CarouselController;
+use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\LogoController;
 use App\Http\Controllers\NavbarController;
 use App\Http\Controllers\PresentationController;
 use App\Http\Controllers\ReadyController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\TagController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\VideoController;
@@ -198,3 +200,22 @@ Route::post('/update-contactIntro/{id}', [ContactController::class, 'update2']);
 
 //Articles
 Route::get('/articles', [ArticleController::class, 'index']);
+Route::get('/create-article', [ArticleController::class, 'create']);
+Route::post('/add-article', [ArticleController::class, 'store']);
+Route::get('/edit-article/{id}', [ArticleController::class, 'edit']);
+Route::post('/update-article/{id}', [ArticleController::class, 'update']);
+Route::post('/delete-article/{id}', [ArticleController::class, 'destroy']);
+
+//Categories
+Route::get('/categories', [CategorieController::class, 'index']);
+Route::post('/add-categorie', [CategorieController::class, 'store']);
+Route::get('/edit-categorie/{id}', [CategorieController::class, 'edit']);
+Route::post('/update-categorie/{id}', [CategorieController::class, 'update']);
+Route::post('/delete-categorie/{id}', [CategorieController::class, 'destroy']);
+
+//Tags
+Route::get('/tags', [TagController::class, 'index']);
+Route::post('/add-tag', [TagController::class, 'store']);
+Route::get('/edit-tag/{id}', [TagController::class, 'edit']);
+Route::post('/update-tag/{id}', [TagController::class, 'update']);
+Route::post('/delete-tag/{id}', [TagController::class, 'destroy']);

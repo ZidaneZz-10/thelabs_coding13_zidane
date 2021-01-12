@@ -14,7 +14,8 @@ class CategorieController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Categorie::all();
+        return view('admin.categorie.categorie', compact("categories"));
     }
 
     /**
@@ -35,7 +36,10 @@ class CategorieController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $newCategorie = new Categorie;
+        $newCategorie->titre = $request->titre;
+        $newCategorie->save();
+        return redirect()->back();
     }
 
     /**
@@ -55,9 +59,10 @@ class CategorieController extends Controller
      * @param  \App\Models\Categorie  $categorie
      * @return \Illuminate\Http\Response
      */
-    public function edit(Categorie $categorie)
+    public function edit($id)
     {
-        //
+        $categorie = Categorie::find($id);
+        return view('admin.categorie.edit',compact('categorie'));
     }
 
     /**
@@ -67,9 +72,12 @@ class CategorieController extends Controller
      * @param  \App\Models\Categorie  $categorie
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Categorie $categorie)
+    public function update(Request $request, $id)
     {
-        //
+        $update=Categorie::find($id);
+        $update->titre = $request->titre;
+        $update->save();
+        return redirect('/categories');
     }
 
     /**
@@ -78,8 +86,10 @@ class CategorieController extends Controller
      * @param  \App\Models\Categorie  $categorie
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Categorie $categorie)
+    public function destroy($id)
     {
-        //
+        $delete=Categorie::find($id);
+        $delete->delete();
+        return redirect()->back();
     }
 }
