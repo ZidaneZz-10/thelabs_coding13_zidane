@@ -8,6 +8,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\EmailController;
 use App\Http\Controllers\LogoController;
 use App\Http\Controllers\NavbarController;
+use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\PresentationController;
 use App\Http\Controllers\ReadyController;
 use App\Http\Controllers\ServiceController;
@@ -247,3 +248,6 @@ Route::post('/add-comment', [CommentaireController::class, 'store']);
 
 //mail
 Route::post('/forms/contact.php', [EmailController::class, 'store']);
+
+//newsletter
+Route::post('/add-email', [NewsletterController::class, 'store']);

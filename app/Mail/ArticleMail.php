@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class MailSender extends Mailable
+class ArticleMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -28,6 +28,7 @@ class MailSender extends Mailable
      */
     public function build()
     {
-        return $this->from('ouldessayda@gmail.com')->view('admin.mail.newsletter')->with(['mail' =>$this->mail]);
+        return $this->from('ouldessayda@gmail.com')->view('admin.mail.mail')->with(['mail' =>$this->mail]);
+
     }
 }

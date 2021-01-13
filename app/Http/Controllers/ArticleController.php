@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ArticleMail;
 use App\Models\Article;
 use App\Models\Categorie;
 use App\Models\Commentaire;
+use App\Models\Newsletter;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
 class ArticleController extends Controller
@@ -54,7 +57,7 @@ class ArticleController extends Controller
         $newArticle->image = $request->file('image')->hashName();
         $newArticle->titre=$request->titre;
         $newArticle->texte=$request->texte;
-        $newArticle->status=$request->status;
+        $newArticle->statut=$request->statut;
         $newArticle->user_id=Auth::id();
         $newArticle->save();
         $request->file('image')->storePublicly('img', 'public');
@@ -64,9 +67,13 @@ class ArticleController extends Controller
     }
     public function update2(Request $request,$id)
     {
+        $mails=Newsletter::all();
         $accepter = Article::find($id);
         $accepter->statut = $request->statut; 
         $accepter->save();
+        foreach ($mails as $mail) {
+            Mail::to($mail->email)->send(new ArticleMail($request));
+        }
         return redirect()->back(); 
     }
 

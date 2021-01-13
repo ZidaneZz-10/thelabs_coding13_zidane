@@ -37,6 +37,7 @@ class DatabaseSeeder extends Seeder
             ArticleTagSeeder::class,
             ArticleCategorySeeder::class,
             CommentaireSeeder::class,
+            NewsletterSeeder::class,
         ]);
     }
 }
