@@ -31,6 +31,11 @@ class TeamSeeder extends Seeder
                     'nom'=>"Abdel Taouil",
                     'fonction'=>"Comptabilité",
                 ],
+                [
+                    'image'=>"3.jpg",
+                    'nom'=>"Nicolas Primo",
+                    'fonction'=>"Director",
+                ],
             ],
         );
     }

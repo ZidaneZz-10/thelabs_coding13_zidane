@@ -51,7 +51,7 @@
 				<li><a href="/welcome">{{$navbar->elem1}}</a></li>
 				<li class="active"><a href="/services">{{$navbar->elem2}}</a></li>
 				<li><a href="/blog">{{$navbar->elem3}}</a></li>
-				<li><a href="/contact">{{$navbar->elem4}}</a></li>
+				<li><a href="/contactMap">{{$navbar->elem4}}</a></li>
 				@auth
 				<li><a href="/home">Admin</a></li>
 				@endauth

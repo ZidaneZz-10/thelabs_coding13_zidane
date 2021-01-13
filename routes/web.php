@@ -64,8 +64,9 @@ Route::get('/blog', function () {
     return view('blog', compact('articles', 'tags', 'categories', 'navbar', 'commentaires'));
 });
 
-Route::get('/contact', function () {
-    return view('contact');
+Route::get('/contactMap', function () {
+    $navbar = Navbar::find(1);
+    return view('contact',compact('navbar'));
 });
 Route::get('/blog-post/{id}', function ($id) {
     $navbar = Navbar::find(1);
