@@ -99,7 +99,17 @@
 									@foreach($article->tags as $item)
 									{{$item->name}},
 									@endforeach</a>
-								<a href="">{{$article->commentaires->count()}} Comments</a>
+								<div class="d-none">{{$a=0}}</div>
+
+								@foreach ($commentaires as $elem)
+								@if ($elem->article_id == $article->id)
+								<div class="d-none">{{$a++}}</div>
+								@else
+								@endif
+
+								@endforeach
+
+								<a href="">Comment ({{$a}})</a>
 							</div>
 							<p>{{$article->texte}}</p>
 						</div>
@@ -115,9 +125,20 @@
 						</div>
 						<!-- Post Comments -->
 						<div class="comments">
-							<h2>Comments ({{$article->commentaires->count()}})</h2>
+							<div class="d-none">{{$a=0}}</div>
+
+							@foreach ($commentaires as $elem)
+							@if ($elem->article_id == $article->id)
+							<div class="d-none">{{$a++}}</div>
+							@else
+							@endif
+
+							@endforeach
+
+							<a href="">Comment ({{$a}})</a>
 							<ul class="comment-list">
-								@foreach($article->commentaires as $comment)
+							@foreach($commentaires as $comment)
+								@if($comment->article_id==$article->id)
 								<li>
 									<div class="avatar">
 										<img src="img/avatar/01.jpg" alt="">
@@ -127,6 +148,7 @@
 										<p>{{$comment->texte}}</p>
 									</div>
 								</li>
+								@endif
 								@endforeach
 							</ul>
 						</div>
@@ -140,6 +162,9 @@
 									<div class="row">
 										<div class="col-sm-6">
 											<input type="text" name="user_id" disabled value="{{Auth::user()->name}}" placeholder="Your name">
+										</div>
+										<div class="col-sm-6" style="display: none;">
+											<input type="text" name="article_id"  value="{{$article->id}}" placeholder="Your name">
 										</div>
 										<div class="col-sm-6">
 											<input type="text" value="{{Auth::user()->email}}" disabled placeholder="Your email">

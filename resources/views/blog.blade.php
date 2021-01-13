@@ -100,11 +100,19 @@
 									@foreach($article->tags as $item)
 									{{$item->name}},
 									@endforeach</a>
-								<a href="">{{$article->commentaires->count()}} Comments</a>
+								<div style="display: none;">{{$a=0}}</div>
+								@foreach ($commentaires as $elem)
+								@if ($elem->article_id == $article->id)
+								<div style="display: none;">{{$a++}}</div>
+								@else
+								@endif
+
+								@endforeach
+								<a href="">Comment ({{$a}})</a>
 							</div>
 							<p>{{Str::limit($article->texte, 200, '...') }}</p>
 							<a href="/blog-post/{{$article->id}}" class="read-more">Read More</a>
-							
+
 
 						</div>
 					</div>

@@ -38,6 +38,7 @@ class CommentaireController extends Controller
     {
         $newCommantaire= New Commentaire;
         $newCommantaire->texte=$request->texte;
+        $newCommantaire->article_id=$request->article_id;
         $newCommantaire->user_id = Auth::id();
         $newCommantaire->save();
         return redirect()->back();

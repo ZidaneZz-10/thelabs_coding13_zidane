@@ -4,23 +4,33 @@
 
 @section('content')
 <div class="container">
-    <form action="/update-categorie/{{$article->id}}" method="post">
+    <form action="/update-article/{{$article->id}}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="container">
-            <label for="">Titre : <br><textarea name="titre" value="{{$article->titre}}" id="" cols="30" rows="10">{{$article->titre}}</textarea></label><br>
-            <label for="">Texte : <br><textarea name="texte" value="{{$article->texte}}" id="" cols="30" rows="10">{{$article->texte}}</textarea></label><br>
-            <select multiple="" class="form-control" name="tags[]">
-                @foreach ($tags as $item)
-                <option value="{{$item->id}}" {{ in_array($item->id, old('tags') ?: []) ? 'selected' : '' }}>{{$item->name}}</option>
-                @endforeach
-            </select>
-            <select multiple="" class="form-control" name="cats[]">
-                @foreach ($categories as $item)
-                <option value="{{$item->id}}" {{ in_array($item->id, old('cats') ?: []) ? 'selected' : '' }}>{{$item->titre}}</option>
-                @endforeach
-            </select>
-        </div>
-        <button class="btn btn-success mt-4">Update</button>
+            <div class="col-8"><img height="300px" width="300px" src="{{asset('img/'.$article->image)}}" alt=""><br></div>
+            <div class="col-4"><input type="file" name="image"><br>
+                <label for="">Titre : <br><textarea name="titre" value="{{$article->titre}}" id="" cols="30" rows="10">{{$article->titre}}</textarea></label><br>
+                <label for="">Texte : <br><textarea name="texte" value="{{$article->texte}}" id="" cols="30" rows="10">{{$article->texte}}</textarea></label><br>
+                <select multiple="" class="form-control" name="tags[]">
+                    @foreach($tags as $item)
+                    @if(in_array($item->id, $tableauTags))
+                    <option value="{{ $item->id }}" selected="true">{{ $item->name }}</option>
+                    @else
+                    <option value="{{ $item->id }}">{{ $item->name }}</option>
+                    @endif
+                    @endforeach
+                </select>
+                <select multiple="" class="form-control" name="cats[]">
+                    @foreach($categories as $item)
+                    @if(in_array($item->id, $tableauCats))
+                    <option value="{{ $item->id }}" selected="true">{{ $item->titre }}</option>
+                    @else
+                    <option value="{{ $item->id }}">{{ $item->titre }}</option>
+                    @endif
+                    @endforeach
+                </select>
+            </div>
+            <button class="btn btn-success mt-4">Update</button>
     </form>
 </div>
 @stop

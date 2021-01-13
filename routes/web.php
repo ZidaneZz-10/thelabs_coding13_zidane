@@ -18,6 +18,7 @@ use App\Http\Controllers\VideoController;
 use App\Models\Article;
 use App\Models\Carousel;
 use App\Models\Categorie;
+use App\Models\Commentaire;
 use App\Models\Contact;
 use App\Models\ContactIntro;
 use App\Models\Navbar;
@@ -55,11 +56,12 @@ Route::get('/welcome', function () {
 });
 
 Route::get('/blog', function () {
-    $articles=Article::paginate(3);
+    $articles = Article::paginate(3);
+    $commentaires = Commentaire::all();
     $navbar = Navbar::find(1);
-    $tags=Tag::all();
-    $categories=Categorie::all();
-    return view('blog',compact('articles','tags','categories','navbar'));
+    $tags = Tag::all();
+    $categories = Categorie::all();
+    return view('blog', compact('articles', 'tags', 'categories', 'navbar', 'commentaires'));
 });
 
 Route::get('/contact', function () {
@@ -67,8 +69,9 @@ Route::get('/contact', function () {
 });
 Route::get('/blog-post/{id}', function ($id) {
     $navbar = Navbar::find(1);
-    $article=Article::find($id);
-    return view('blog-post',compact('article','navbar'));
+    $commentaires = Commentaire::all();
+    $article = Article::find($id);
+    return view('blog-post', compact('article', 'navbar', 'commentaires'));
 });
 
 Route::get('/services', function () {
@@ -83,9 +86,9 @@ Route::get('/services', function () {
     $limite = 1;
 
     $teams = Team::inRandomOrder()->get();
-    $counter=0;
+    $counter = 0;
     $ok = 1;
-    return view('services', compact('services', 'str3','servicePrime','limite','navbar'));
+    return view('services', compact('services', 'str3', 'servicePrime', 'limite', 'navbar'));
 });
 
 
@@ -129,9 +132,9 @@ Route::get('/welcome', function () {
     $contactIntro = ContactIntro::find(1);
 
     $teams = Team::inRandomOrder()->get();
-    $counter=0;
+    $counter = 0;
     $ok = 1;
-    return view('welcome2', compact('navbar', 'carouselImg', 'textCarousel', 'serviceCards', 'services', 'presentation', 'video', 'ready', 'contact', 'contactIntro', 'str2', 'str3', 'serviceTitle', 'str4', 'teamTitle', 'testimonialTitle','teams','counter','ok'));
+    return view('welcome2', compact('navbar', 'carouselImg', 'textCarousel', 'serviceCards', 'services', 'presentation', 'video', 'ready', 'contact', 'contactIntro', 'str2', 'str3', 'serviceTitle', 'str4', 'teamTitle', 'testimonialTitle', 'teams', 'counter', 'ok'));
 });
 
 //Navbar
@@ -217,7 +220,7 @@ Route::post('/add-article', [ArticleController::class, 'store']);
 Route::get('/edit-article/{id}', [ArticleController::class, 'edit']);
 Route::post('/update-article/{id}', [ArticleController::class, 'update']);
 Route::post('/delete-article/{id}', [ArticleController::class, 'destroy']);
-Route::get('/article/{id}',[ArticleController::class,'show']);
+Route::get('/article/{id}', [ArticleController::class, 'show']);
 
 
 //Categories
@@ -239,4 +242,4 @@ Route::post('/delete-comment/{id}', [CommentaireController::class, 'destroy']);
 Route::post('/add-comment', [CommentaireController::class, 'store']);
 
 //mail
-Route::post('/forms/contact.php',[EmailController::class,'store']);
+Route::post('/forms/contact.php', [EmailController::class, 'store']);

@@ -7,6 +7,7 @@ use App\Models\Categorie;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ArticleController extends Controller
 {
@@ -76,7 +77,17 @@ class ArticleController extends Controller
         $article=Article::find($id);
         $tags=Tag::all();
         $categories=Categorie::all();
-        return view('admin.article.edit',compact('article','tags','categories'));
+        $tableauTags = [];
+
+        foreach ($article->tags as $tag) {
+            $tableauTags[] = $tag->id;
+        }
+        $tableauCats = [];
+
+        foreach ($article->categories as $categorie) {
+            $tableauCats[] = $categorie->id;
+        }
+        return view('admin.article.edit',compact('article','tags','categories','tableauCats','tableauTags'));
     }
 
     /**
@@ -86,9 +97,22 @@ class ArticleController extends Controller
      * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Article $article)
+    public function update(Request $request, $id)
     {
-        //
+        $newArticle = Article::find($id);
+
+        $newArticle->titre = $request->titre;
+        $newArticle->texte = $request->texte;
+        $newArticle->user_id = Auth::user()->id;
+        $newArticle->image = $request->file('image')->hashName();
+        $newArticle->save();
+        $newArticle->categories()->detach();
+        $newArticle->tags()->detach();
+        $newArticle->tags()->syncWithoutDetaching($request->tags);
+        $newArticle->categories()->syncWithoutDetaching($request->cats);
+        // Storage::disk('public')->delete('img/' . $newArticle->image);
+        $request->file('image')->storePublicly('img','public');
+        return redirect('/articles');
     }
 
     /**
