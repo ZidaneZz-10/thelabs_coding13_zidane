@@ -19,10 +19,12 @@ class CommentaireSeeder extends Seeder
                 [
                     'texte'=>"c'est nul",
                     'user_id' =>1,
+                    'created_at'=>'2021-01-11 09:18:33',
                 ],
                 [
                     'texte'=>"c'est pas mal",
                     'user_id' =>1,
+                    'created_at'=>'2021-01-12 09:18:33',
                 ],
             ],
         );

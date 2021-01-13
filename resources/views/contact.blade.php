@@ -40,16 +40,19 @@
 	<!-- Header section -->
 	<header class="header-section">
 		<div class="logo">
-			<img src="img/logo.png" alt=""><!-- Logo -->
+			<img src="{{asset('img/imgPetit.png')}}" alt=""><!-- Logo -->
 		</div>
 		<!-- Navigation -->
 		<div class="responsive"><i class="fa fa-bars"></i></div>
 		<nav>
 			<ul class="menu-list">
-			<li><a href="/welcome">Home</a></li>
-				<li><a href="/services">Services</a></li>
-				<li><a href="/blog">Blog</a></li>
-				<li class="active"><a href="/contact">Contact</a></li>
+				<li><a href="/welcome">{{$navbar->elem1}}</a></li>
+				<li><a href="/services">{{$navbar->elem2}}</a></li>
+				<li><a href="/blog">{{$navbar->elem3}}</a></li>
+				<li class="active"><a href="/contact">{{$navbar->elem4}}</a></li>
+				@auth
+				<li><a href="/home">Admin</a></li>
+				@endauth
 			</ul>
 		</nav>
 	</header>

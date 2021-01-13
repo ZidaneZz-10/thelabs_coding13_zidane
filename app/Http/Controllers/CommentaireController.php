@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Commentaire;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CommentaireController extends Controller
 {
@@ -37,6 +38,7 @@ class CommentaireController extends Controller
     {
         $newCommantaire= New Commentaire;
         $newCommantaire->texte=$request->texte;
+        $newCommantaire->user_id = Auth::id();
         $newCommantaire->save();
         return redirect()->back();
     }

@@ -14,8 +14,9 @@ use App\Http\Controllers\TagController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\VideoController;
+use App\Models\Article;
 use App\Models\Carousel;
-use App\Models\Commentaire;
+use App\Models\Categorie;
 use App\Models\Contact;
 use App\Models\ContactIntro;
 use App\Models\Navbar;
@@ -23,6 +24,7 @@ use App\Models\Presentation;
 use App\Models\Ready;
 use App\Models\Service;
 use App\Models\ServiceTitle;
+use App\Models\Tag;
 use Illuminate\Support\Str;
 use App\Models\Team;
 use App\Models\TeamTitle;
@@ -51,20 +53,26 @@ Route::get('/welcome', function () {
     return view('welcome2');
 });
 
-Route::get('/blog-post', function () {
-    return view('blog-post');
-});
-
 Route::get('/blog', function () {
-    return view('blog');
+    $articles=Article::paginate(3);
+    $navbar = Navbar::find(1);
+    $tags=Tag::all();
+    $categories=Categorie::all();
+    return view('blog',compact('articles','tags','categories','navbar'));
 });
 
 Route::get('/contact', function () {
     return view('contact');
 });
+Route::get('/blog-post/{id}', function ($id) {
+    $navbar = Navbar::find(1);
+    $article=Article::find($id);
+    return view('blog-post',compact('article','navbar'));
+});
 
 Route::get('/services', function () {
     $services = Service::limit(9)->get();
+    $navbar = Navbar::find(1);
 
     $serviceTitle = ServiceTitle::find(1);
     $titre1 = Str::of($serviceTitle->titre)->replace('(', '<span>');
@@ -76,8 +84,9 @@ Route::get('/services', function () {
     $teams = Team::inRandomOrder()->get();
     $counter=0;
     $ok = 1;
-    return view('services', compact('services', 'str3','servicePrime','limite'));
+    return view('services', compact('services', 'str3','servicePrime','limite','navbar'));
 });
+
 
 Auth::routes();
 
@@ -226,3 +235,4 @@ Route::post('/delete-tag/{id}', [TagController::class, 'destroy']);
 
 //comments
 Route::post('/delete-comment/{id}', [CommentaireController::class, 'destroy']);
+Route::post('/add-comment', [CommentaireController::class, 'store']);
