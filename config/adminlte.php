@@ -350,14 +350,13 @@ return [
             'icon'        => 'fas fa-tags',
         ],
         [
-            'text'        => 'Categorie',
+            'text'        => 'Categories',
             'url'         => '/categories',
             'icon'        => 'fas fa-tags',
         ],
-        
-
         ['text'    => 'Articles',
         'submenu' => [
+            
             [
                 'text'        => 'Create Article',
                 'url'         => '/create-article',
@@ -366,6 +365,11 @@ return [
             [
                 'text'       => 'Articles',
                 'url'         => '/articles',
+                'icon'        => 'fas fa-file-pdf',
+            ],
+            [
+                'text'       => 'Articles en Attente',
+                'url'         => '/articlesAttente',
                 'icon'        => 'fas fa-file-pdf',
             ],
         ],

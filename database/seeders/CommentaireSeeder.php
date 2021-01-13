@@ -28,6 +28,18 @@ class CommentaireSeeder extends Seeder
                     'user_id' =>1,
                     'created_at'=>'2021-01-12 09:18:33',
                 ],
+                [
+                    'texte'=>"c'est pas mal",
+                    'article_id'=>2,
+                    'user_id' =>1,
+                    'created_at'=>'2021-01-12 09:18:33',
+                ],
+                [
+                    'texte'=>"c'est pas mal",
+                    'article_id'=>4,
+                    'user_id' =>2,
+                    'created_at'=>'2021-01-12 09:18:33',
+                ],
             ],
         );
     }

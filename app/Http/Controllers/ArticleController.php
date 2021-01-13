@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use App\Models\Categorie;
+use App\Models\Commentaire;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,7 +20,14 @@ class ArticleController extends Controller
     public function index()
     {
         $articles=Article::all();
-        return view('admin.article.article',compact('articles'));
+        $commentaires=Commentaire::all();
+        return view('admin.article.article',compact('articles','commentaires'));
+    }
+    public function index2()
+    {
+        $articles=Article::all();
+        $commentaires=Commentaire::all();
+        return view('admin.article.attente',compact('articles','commentaires'));
     }
 
     /**
@@ -46,12 +54,20 @@ class ArticleController extends Controller
         $newArticle->image = $request->file('image')->hashName();
         $newArticle->titre=$request->titre;
         $newArticle->texte=$request->texte;
+        $newArticle->status=$request->status;
         $newArticle->user_id=Auth::id();
         $newArticle->save();
         $request->file('image')->storePublicly('img', 'public');
         $newArticle->tags()->syncWithoutDetaching($request->tags);
         $newArticle->categories()->syncWithoutDetaching($request->cats);
         return redirect('/articles');
+    }
+    public function update2(Request $request,$id)
+    {
+        $accepter = Article::find($id);
+        $accepter->statut = $request->statut; 
+        $accepter->save();
+        return redirect()->back(); 
     }
 
     /**
@@ -63,7 +79,8 @@ class ArticleController extends Controller
     public function show($id)
     {
         $article=Article::find($id);
-        return view("admin.article.show",compact('article'));
+        $commentaires=Commentaire::all();
+        return view("admin.article.show",compact('article','commentaires'));
     }
 
     /**
@@ -104,6 +121,7 @@ class ArticleController extends Controller
         $newArticle->titre = $request->titre;
         $newArticle->texte = $request->texte;
         $newArticle->user_id = Auth::user()->id;
+        $newArticle->status=$request->status;
         $newArticle->image = $request->file('image')->hashName();
         $newArticle->save();
         $newArticle->categories()->detach();
@@ -126,7 +144,6 @@ class ArticleController extends Controller
         $delete=Article::find($id);
         Article::find($id)->tags()->detach();
         Article::find($id)->categories()->detach();
-        Article::find($id)->commentaires()->detach();
         $delete->delete();
         return redirect()->back();
     }

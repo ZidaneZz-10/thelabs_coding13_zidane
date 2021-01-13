@@ -53,6 +53,10 @@ class ArticleCategorySeeder extends Seeder
                     'article_id'=>3,
                     'categorie_id' =>2,
                 ],
+                [
+                    'article_id'=>4,
+                    'categorie_id' =>4,
+                ],
                 
             ],
         );

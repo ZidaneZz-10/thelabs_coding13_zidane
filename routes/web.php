@@ -215,10 +215,13 @@ Route::post('/update-contactIntro/{id}', [ContactController::class, 'update2']);
 
 //Articles
 Route::get('/articles', [ArticleController::class, 'index']);
+Route::get('/articlesAttente', [ArticleController::class, 'index2']);
 Route::get('/create-article', [ArticleController::class, 'create']);
 Route::post('/add-article', [ArticleController::class, 'store']);
 Route::get('/edit-article/{id}', [ArticleController::class, 'edit']);
 Route::post('/update-article/{id}', [ArticleController::class, 'update']);
+Route::post('/accepte-article/{id}', [ArticleController::class, 'update2']);
+
 Route::post('/delete-article/{id}', [ArticleController::class, 'destroy']);
 Route::get('/article/{id}', [ArticleController::class, 'show']);
 

@@ -3,9 +3,10 @@
 @section('title', 'AdminLTE')
 
 @section('content')
-<h1 class="text-center">Articles</h1>
+<h1 class="text-center">Articles en Attente</h1>
 @foreach($articles as $article)
-@if($article->statut=='authorized')
+@if($article->statut=='waiting')
+
 <div class="container border border-dark p-3" style="width: 800Px;">
   <div style="position: relative;">
     <img height="320px" width="600px" src="{{asset('img/'.$article->image)}}" alt="">
@@ -42,12 +43,16 @@
     <p> {{Str::limit($article->texte, 200, '...') }}</p>
     <a href="/article/{{$article->id}}" class="text-success">Read More</a>
   </div>
-  <a href="/edit-article/{{$article->id}}" class="btn btn-primary mt-4 mr-2">Edit</a>
-  <form action="/delete-article/{{$article->id}}" method="POST">
-    @csrf
-    <button type="submit" class="btn btn-danger mt-2">Delete</button><br><br>
-  </form>
 </div>
+<form action="/accepte-article/{{$article->id}}" method="post">
+@csrf
+<input type="text" name="statut" value="authorized" style="display: none;">
+<button type="submit" class='btn btn-success'>Accepter</button>
+</form>
+<form action="/delete-article/{{$article->id}}" method="POST">
+    @csrf
+    <button type="submit" class="btn btn-danger mt-2">Decline</button><br><br>
+  </form>
 <hr>
 @endif
 

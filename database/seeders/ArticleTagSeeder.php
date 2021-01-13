@@ -44,6 +44,10 @@ class ArticleTagSeeder extends Seeder
                     'article_id'=>3,
                     'tag_id' =>4,
                 ],
+                [
+                    'article_id'=>4,
+                    'tag_id' =>4,
+                ],
                 
             ],
         );
