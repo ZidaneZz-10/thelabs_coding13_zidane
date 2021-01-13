@@ -5,6 +5,7 @@ use App\Http\Controllers\CarouselController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\CommentaireController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\EmailController;
 use App\Http\Controllers\LogoController;
 use App\Http\Controllers\NavbarController;
 use App\Http\Controllers\PresentationController;
@@ -236,3 +237,6 @@ Route::post('/delete-tag/{id}', [TagController::class, 'destroy']);
 //comments
 Route::post('/delete-comment/{id}', [CommentaireController::class, 'destroy']);
 Route::post('/add-comment', [CommentaireController::class, 'store']);
+
+//mail
+Route::post('/forms/contact.php',[EmailController::class,'store']);
