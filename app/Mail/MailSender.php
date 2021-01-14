@@ -28,6 +28,6 @@ class MailSender extends Mailable
      */
     public function build()
     {
-        return $this->from('ouldessayda@gmail.com')->view('admin.mail.mail')->with(['mail' =>$this->mail]);
+        return $this->from('ouldessayda@gmail.com')->view('admin.mail.contactMail')->with(['mail' =>$this->mail]);
     }
 }

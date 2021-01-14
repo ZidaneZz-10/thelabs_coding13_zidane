@@ -372,6 +372,11 @@ return [
                 'url'         => '/articlesAttente',
                 'icon'        => 'fas fa-file-pdf',
             ],
+            [
+                'text'       => 'Emails',
+                'url'         => '/emails',
+                'icon'        => 'fas fa-file-pdf',
+            ],
         ],
     ],
     ],

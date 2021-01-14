@@ -11,6 +11,8 @@
             <div class="col-4"><input type="file" name="image"><br>
                 <label for="">Titre : <br><textarea name="titre" value="{{$article->titre}}" id="" cols="30" rows="10">{{$article->titre}}</textarea></label><br>
                 <label for="">Texte : <br><textarea name="texte" value="{{$article->texte}}" id="" cols="30" rows="10">{{$article->texte}}</textarea></label><br>
+                <input type="text" name="statut" value="authorized" style="display: none;">
+
                 <select multiple="" class="form-control" name="tags[]">
                     @foreach($tags as $item)
                     @if(in_array($item->id, $tableauTags))

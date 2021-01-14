@@ -128,7 +128,7 @@ class ArticleController extends Controller
         $newArticle->titre = $request->titre;
         $newArticle->texte = $request->texte;
         $newArticle->user_id = Auth::user()->id;
-        $newArticle->status=$request->status;
+        $newArticle->statut=$request->statut;
         $newArticle->image = $request->file('image')->hashName();
         $newArticle->save();
         $newArticle->categories()->detach();

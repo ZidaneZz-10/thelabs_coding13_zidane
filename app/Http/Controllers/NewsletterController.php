@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Newsletter;
+use App\Notifications\message;
 use Illuminate\Http\Request;
 
 class NewsletterController extends Controller
@@ -37,6 +38,12 @@ class NewsletterController extends Controller
     {
         $newEntry=new Newsletter;
         $newEntry->email=$request->email;
+        $mails=Newsletter::all();
+        foreach($mails as $mail){
+            if($mail->email==$newEntry->email){
+                $mail->notify(new message($newEntry));
+            }
+        }
         $newEntry->save();
         return redirect()->back();
     }
