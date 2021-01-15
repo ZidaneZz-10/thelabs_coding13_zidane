@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Mail\MailSender;
 use App\Models\Email;
+use App\Models\Newsletter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -16,7 +17,8 @@ class EmailController extends Controller
      */
     public function index()
     {
-        //
+        $mails=Email::all();
+        return view('admin.mail.mail',compact('mails'));
     }
 
     /**
@@ -87,8 +89,10 @@ class EmailController extends Controller
      * @param  \App\Models\Email  $email
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Email $email)
+    public function destroy($id)
     {
-        //
+        $delete=Email::find($id);
+        $delete->delete();
+        return redirect()->back();
     }
 }

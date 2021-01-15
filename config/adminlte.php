@@ -354,31 +354,32 @@ return [
             'url'         => '/categories',
             'icon'        => 'fas fa-tags',
         ],
-        ['text'    => 'Articles',
-        'submenu' => [
-            
-            [
-                'text'        => 'Create Article',
-                'url'         => '/create-article',
-                'icon'        => 'fas fa-file-pdf',
-            ],
-            [
-                'text'       => 'Articles',
-                'url'         => '/articles',
-                'icon'        => 'fas fa-file-pdf',
-            ],
-            [
-                'text'       => 'Articles en Attente',
-                'url'         => '/articlesAttente',
-                'icon'        => 'fas fa-file-pdf',
-            ],
-            [
-                'text'       => 'Emails',
-                'url'         => '/emails',
-                'icon'        => 'fas fa-file-pdf',
+        [
+            'text'    => 'Articles',
+            'submenu' => [
+
+                [
+                    'text'        => 'Create Article',
+                    'url'         => '/create-article',
+                    'icon'        => 'fas fa-file-pdf',
+                ],
+                [
+                    'text'       => 'Articles',
+                    'url'         => '/articles',
+                    'icon'        => 'fas fa-file-pdf',
+                ],
+                [
+                    'text'       => 'Articles en Attente',
+                    'url'         => '/articlesAttente',
+                    'icon'        => 'fas fa-file-pdf',
+                ],
             ],
         ],
-    ],
+        [
+            'text'       => 'Emails',
+            'url'         => '/emails',
+            'icon'        => 'fas fa-inbox',
+        ],
     ],
 
     /*

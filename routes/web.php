@@ -251,3 +251,7 @@ Route::post('/forms/contact.php', [EmailController::class, 'store']);
 
 //newsletter
 Route::post('/add-email', [NewsletterController::class, 'store']);
+
+// liste d'emails de contact
+Route::get('/emails', [EmailController::class, 'index']);
+Route::post('/delete-email/{id}', [EmailController::class, 'destroy']);
