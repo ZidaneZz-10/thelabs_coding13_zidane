@@ -14,8 +14,23 @@
 @section('auth_header', __('adminlte::adminlte.register_message'))
 
 @section('auth_body')
-    <form action="{{ $register_url }}" method="post">
+    <form action="{{ $register_url }}" method="post" enctype="multipart/form-data">
         {{ csrf_field() }}
+        {{-- image field --}}
+        <div class="input-group mb-3">
+            <input type="file" name="image" class="form-control {{ $errors->has('image') ? 'is-invalid' : '' }}"
+                   value="{{ old('image') }}" placeholder="{{ __('adminlte::adminlte.full_image') }}" autofocus>
+            <div class="input-group-append">
+                <div class="input-group-text">
+                    <span class="fas fa-user {{ config('adminlte.classes_auth_icon', '') }}"></span>
+                </div>
+            </div>
+            @if($errors->has('image'))
+                <div class="invalid-feedback">
+                    <strong>{{ $errors->first('image') }}</strong>
+                </div>
+            @endif
+        </div>
 
         {{-- Name field --}}
         <div class="input-group mb-3">

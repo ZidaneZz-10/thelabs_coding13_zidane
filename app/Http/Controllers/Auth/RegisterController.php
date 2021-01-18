@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Events\UserHasRegisteredEvent;
 use App\Http\Controllers\Controller;
+use App\Models\Newsletter;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -40,6 +42,7 @@ class RegisterController extends Controller
     {
         $this->middleware('guest');
     }
+    
 
     /**
      * Get a validator for an incoming registration request.
@@ -53,6 +56,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'image' => ['required','max:1000'],
         ]);
     }
 
@@ -64,10 +68,36 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $mail = Newsletter::all();
+        $index = 0;
+
+        foreach($mail as $element){
+            if($element->email == $data['email']){
+               $index = $element->id; 
+                break;
+            }else{
+                $index = -1;
+            }
+        }
+
+        if($index === -1){
+                $newEntry = new Newsletter;
+                $newEntry->email = $data['email'];
+                $newEntry->save();
+        }
+
+        $user = User::create([
             'name' => $data['name'],
+            'image' => $data['image']->hashName(),
+            $data["image"]->storePublicly('img','public'),
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+
+
+        event(new UserHasRegisteredEvent($user));
+
+        return $user ;
+
     }
 }
