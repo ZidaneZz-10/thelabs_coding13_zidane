@@ -15,7 +15,8 @@ class NewsletterController extends Controller
      */
     public function index()
     {
-        //
+        $mails=Newsletter::all();
+        return view('admin.newsletters',compact('mails'));
     }
 
     /**
@@ -88,8 +89,10 @@ class NewsletterController extends Controller
      * @param  \App\Models\Newsletter  $newsletter
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Newsletter $newsletter)
+    public function destroy($id)
     {
-        //
+        $delete=Newsletter::find($id);
+        $delete->delete();
+        return redirect()->back();
     }
 }

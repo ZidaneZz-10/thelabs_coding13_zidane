@@ -380,6 +380,11 @@ return [
             'url'         => '/emails',
             'icon'        => 'fas fa-inbox',
         ],
+        [
+            'text'       => 'Newsletters',
+            'url'         => '/newsletters',
+            'icon'        => 'fas fa-address-book',
+        ],
     ],
 
     /*

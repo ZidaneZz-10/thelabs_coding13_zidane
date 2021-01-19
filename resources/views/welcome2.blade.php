@@ -52,9 +52,18 @@
 				<li><a href="/services">{{$navbar->elem2}}</a></li>
 				<li><a href="/blog">{{$navbar->elem3}}</a></li>
 				<li><a href="/contactMap">{{$navbar->elem4}}</a></li>
-				@auth
+				@if(Auth::user()->roles->role!="membre")
 				<li><a href="/home">Admin</a></li>
+				@endif
+				@auth
+				<li style="list-style: none; margin:25px;margin-left:10px">
+					<form id="logout-form" action="{{route('logout') }}" method="POST" class="d-none">
+						@csrf
+						<button class="btn btn-danger p-5" type="submit">Deconnexion</button>
+					</form>
+				</li>
 				@endauth
+
 			</ul>
 		</nav>
 	</header>
@@ -380,7 +389,7 @@
 				<!-- contact form -->
 				<div class="col-md-6 col-pull">
 					<form class="form-class" action="forms/contact.php" method="post" id="con_form">
-					@csrf
+						@csrf
 						<div class="row">
 							<div class="col-sm-6">
 								<input type="text" name="name" placeholder="Your name">

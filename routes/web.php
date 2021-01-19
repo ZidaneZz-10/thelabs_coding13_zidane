@@ -102,7 +102,7 @@ Auth::routes();
 
 Route::get('/home', function () {
     return view('home');
-})->name('home')->middleware('auth');
+})->name('home')->middleware('redacteur');
 
 // Affichage vers site principale
 Route::get('/welcome', function () {
@@ -151,15 +151,15 @@ Route::post('/update-logo/{id}', [LogoController::class, 'update']);
 
 //carousel
 //image
-Route::get('/carouselimg', [CarouselController::class, 'index']);
-Route::get('/create-carouselimg', [CarouselController::class, 'create']);
+Route::get('/carouselimg', [CarouselController::class, 'index'])->middleware('webmaster');
+Route::get('/create-carouselimg', [CarouselController::class, 'create'])->middleware('webmaster');
 Route::post('/add-carouselimg', [CarouselController::class, 'store']);
-Route::get('/edit-carouselimg/{id}', [CarouselController::class, 'edit']);
+Route::get('/edit-carouselimg/{id}', [CarouselController::class, 'edit'])->middleware('webmaster');
 Route::post('/update-carouselimg/{id}', [CarouselController::class, 'update']);
 Route::post('/delete-carouselimg/{id}', [CarouselController::class, 'destroy']);
 //texte
-Route::get('/carouselTxt', [CarouselController::class, 'index2']);
-Route::get('/edit-carouselTxt/{id}', [CarouselController::class, 'edit2']);
+Route::get('/carouselTxt', [CarouselController::class, 'index2'])->middleware('webmaster');
+Route::get('/edit-carouselTxt/{id}', [CarouselController::class, 'edit2'])->middleware('webmaster');
 Route::post('/update-carouselTxt/{id}', [CarouselController::class, 'update2']);
 
 //services 
@@ -216,16 +216,16 @@ Route::post('/update-contact/{id}', [ContactController::class, 'update']);
 Route::post('/update-contactIntro/{id}', [ContactController::class, 'update2']);
 
 //Articles
-Route::get('/articles', [ArticleController::class, 'index']);
-Route::get('/articlesAttente', [ArticleController::class, 'index2']);
-Route::get('/create-article', [ArticleController::class, 'create']);
+Route::get('/articles', [ArticleController::class, 'index'])->middleware('redacteur');
+Route::get('/articlesAttente', [ArticleController::class, 'index2'])->middleware('webmaster');
+Route::get('/create-article', [ArticleController::class, 'create'])->middleware('redacteur');
 Route::post('/add-article', [ArticleController::class, 'store']);
-Route::get('/edit-article/{id}', [ArticleController::class, 'edit']);
-Route::post('/update-article/{id}', [ArticleController::class, 'update']);
-Route::post('/accepte-article/{id}', [ArticleController::class, 'update2']);
+Route::get('/edit-article/{id}', [ArticleController::class, 'edit'])->middleware('redacteur');
+Route::post('/update-article/{id}', [ArticleController::class, 'update'])->middleware('redacteur');
+Route::post('/accepte-article/{id}', [ArticleController::class, 'update2'])->middleware('webmaster');
 
 Route::post('/delete-article/{id}', [ArticleController::class, 'destroy']);
-Route::get('/article/{id}', [ArticleController::class, 'show']);
+Route::get('/article/{id}', [ArticleController::class, 'show'])->middleware('webmaster');
 
 
 //Categories
@@ -250,7 +250,10 @@ Route::post('/add-comment', [CommentaireController::class, 'store']);
 Route::post('/forms/contact.php', [EmailController::class, 'store']);
 
 //newsletter
+Route::get('/newsletters', [NewsletterController::class, 'index']);
 Route::post('/add-email', [NewsletterController::class, 'store']);
+Route::post('/delete-newsletter/{id}', [NewsletterController::class, 'destroy']);
+
 
 // liste d'emails de contact
 Route::get('/emails', [EmailController::class, 'index']);
