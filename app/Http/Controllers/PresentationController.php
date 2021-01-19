@@ -76,6 +76,7 @@ class PresentationController extends Controller
         $update->texte1 = $request->texte1;
         $update->texte2 = $request->texte2;
         $update->button = $request->button;
+        $this->authorize('webmaster');
         $update->save();
         return redirect('/presentation');
     }

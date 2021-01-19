@@ -40,13 +40,19 @@
   </ul>
   <div style="height: 100px;width: 600px;">
     <p> {{Str::limit($article->texte, 200, '...') }}</p>
+    @can('redacteur')
     <a href="/article/{{$article->id}}" class="text-success">Read More</a>
+    @endcan
   </div>
+  @can('articleGate',$article)
   <a href="/edit-article/{{$article->id}}" class="btn btn-primary mt-4 mr-2">Edit</a>
+  @endcan
+  @can('articleGate',$article)
   <form action="/delete-article/{{$article->id}}" method="POST">
     @csrf
     <button type="submit" class="btn btn-danger mt-2">Delete</button><br><br>
   </form>
+  @endcan
 </div>
 <hr>
 @endif

@@ -44,6 +44,7 @@ class CarouselController extends Controller
     public function store(Request $request){
         $newimg = new Carousel;
         $newimg->image = $request->file('image')->hashName();
+        $this->authorize('webmaster');
         $newimg->save();
         $request->file('image')->storePublicly('img', 'public');
         return redirect('/carouselimg');
@@ -88,6 +89,7 @@ class CarouselController extends Controller
     {
         $update = Carousel::find($id);
         $update->image = $request->file('image')->hashName();
+        $this->authorize('webmaster');
         $update->save();
         Storage::disk('public')->delete('img/' . $update->image);
         $request->file('image')->storePublicly('img', 'public');
@@ -97,6 +99,7 @@ class CarouselController extends Controller
     {
         $update = TextCarousel::find($id);
         $update->texte = $request->texte;
+        $this->authorize('webmaster');
         $update->save();
         return redirect('/carouselTxt');
     }
@@ -110,6 +113,7 @@ class CarouselController extends Controller
     public function destroy($id)
     {
         $delete = Carousel::find($id);
+        $this->authorize('webmaster');
         Storage::disk('public')->delete('img/' . $delete->image);
         $delete->delete();
         return redirect()->back();

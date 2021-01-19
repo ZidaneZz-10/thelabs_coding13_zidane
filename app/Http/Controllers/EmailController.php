@@ -92,6 +92,7 @@ class EmailController extends Controller
     public function destroy($id)
     {
         $delete=Email::find($id);
+        $this->authorize('admin');
         $delete->delete();
         return redirect()->back();
     }

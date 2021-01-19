@@ -53,7 +53,26 @@
 				<li><a href="/blog">{{$navbar->elem3}}</a></li>
 				<li><a href="/contactMap">{{$navbar->elem4}}</a></li>
 				@auth
+				@if(Auth::user()->roles->role!="membre")
 				<li><a href="/home">Admin</a></li>
+				@endif
+				@endauth
+				@if (Route::has('login'))
+				@auth
+				@else
+				<li><a href="{{ route('login') }}">Login</a></li>
+				@if (Route::has('register'))
+				<li><a href="{{ route('register') }}">Register</a></li>
+				@endif
+				@endauth
+				@endif
+				@auth
+				<li style="list-style: none; margin:25px;margin-left:10px">
+					<form id="logout-form" action="{{route('logout') }}" method="POST" class="d-none">
+						@csrf
+						<button class="btn btn-danger p-5" type="submit">Deconnexion</button>
+					</form>
+				</li>
 				@endauth
 			</ul>
 		</nav>

@@ -94,15 +94,12 @@ Route::get('/services', function () {
 });
 
 
-Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Auth::routes();
 
-Route::get('/home', function () {
-    return view('home');
-})->name('home')->middleware('redacteur');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('redacteur');
+
 
 // Affichage vers site principale
 Route::get('/welcome', function () {
@@ -140,13 +137,13 @@ Route::get('/welcome', function () {
 });
 
 //Navbar
-Route::get('/navbar', [NavbarController::class, 'index']);
-Route::get('/edit-navbar/{id}', [NavbarController::class, 'edit']);
+Route::get('/navbar', [NavbarController::class, 'index'])->middleware('admin');
+Route::get('/edit-navbar/{id}', [NavbarController::class, 'edit'])->middleware('admin');
 Route::post('/update-navbar/{id}', [NavbarController::class, 'update']);
 
 //Logo
-Route::get('/logo', [LogoController::class, 'index']);
-Route::get('/edit-logo/{id}', [LogoController::class, 'edit']);
+Route::get('/logo', [LogoController::class, 'index'])->middleware('admin');
+Route::get('/edit-logo/{id}', [LogoController::class, 'edit'])->middleware('admin');
 Route::post('/update-logo/{id}', [LogoController::class, 'update']);
 
 //carousel
@@ -163,34 +160,34 @@ Route::get('/edit-carouselTxt/{id}', [CarouselController::class, 'edit2'])->midd
 Route::post('/update-carouselTxt/{id}', [CarouselController::class, 'update2']);
 
 //services 
-Route::get('/service', [ServiceController::class, 'index']);
-Route::get('/create-service', [ServiceController::class, 'create']);
+Route::get('/service', [ServiceController::class, 'index'])->middleware('webmaster');
+Route::get('/create-service', [ServiceController::class, 'create'])->middleware('webmaster');
 Route::post('/add-service', [ServiceController::class, 'store']);
-Route::get('/edit-service/{id}', [ServiceController::class, 'edit']);
+Route::get('/edit-service/{id}', [ServiceController::class, 'edit'])->middleware('webmaster');
 Route::post('/update-service/{id}', [ServiceController::class, 'update']);
 Route::post('/delete-service/{id}', [ServiceController::class, 'destroy']);
 // Update Title Service
 Route::post('/update-titleService/{id}', [ServiceController::class, 'update2']);
 
 //Presentation
-Route::get('/presentation', [PresentationController::class, 'index']);
-Route::get('/edit-presentation/{id}', [PresentationController::class, 'edit']);
+Route::get('/presentation', [PresentationController::class, 'index'])->middleware('webmaster');
+Route::get('/edit-presentation/{id}', [PresentationController::class, 'edit'])->middleware('webmaster');
 Route::post('/update-presentation/{id}', [PresentationController::class, 'update']);
 
 // Video
-Route::get('/video', [VideoController::class, 'index']);
-Route::get('/edit-video/{id}', [VideoController::class, 'edit']);
+Route::get('/video', [VideoController::class, 'index'])->middleware('webmaster');
+Route::get('/edit-video/{id}', [VideoController::class, 'edit'])->middleware('webmaster');
 Route::post('/update-video/{id}', [VideoController::class, 'update']);
 
 // Ready
-Route::get('/ready', [ReadyController::class, 'index']);
-Route::get('/edit-ready/{id}', [ReadyController::class, 'edit']);
+Route::get('/ready', [ReadyController::class, 'index'])->middleware('webmaster');
+Route::get('/edit-ready/{id}', [ReadyController::class, 'edit'])->middleware('webmaster');
 Route::post('/update-ready/{id}', [ReadyController::class, 'update']);
 
 //Team
-Route::get('/team', [TeamController::class, 'index']);
-Route::get('/edit-team/{id}', [TeamController::class, 'edit']);
-Route::get('/create-team', [TeamController::class, 'create']);
+Route::get('/team', [TeamController::class, 'index'])->middleware('webmaster');
+Route::get('/edit-team/{id}', [TeamController::class, 'edit'])->middleware('webmaster');
+Route::get('/create-team', [TeamController::class, 'create'])->middleware('webmaster');
 Route::post('/add-team', [TeamController::class, 'store']);
 Route::post('/update-team/{id}', [TeamController::class, 'update']);
 Route::post('/delete-team/{id}', [TeamController::class, 'destroy']);
@@ -198,9 +195,9 @@ Route::post('/delete-team/{id}', [TeamController::class, 'destroy']);
 Route::post('/update-title/{id}', [TeamController::class, 'update2']);
 
 //testimonials
-Route::get('/testimonials', [TestimonialController::class, 'index']);
-Route::get('/edit-testimonial/{id}', [TestimonialController::class, 'edit']);
-Route::get('/create-testimonial', [TestimonialController::class, 'create']);
+Route::get('/testimonials', [TestimonialController::class, 'index'])->middleware('webmaster');
+Route::get('/edit-testimonial/{id}', [TestimonialController::class, 'edit'])->middleware('webmaster');
+Route::get('/create-testimonial', [TestimonialController::class, 'create'])->middleware('webmaster');
 Route::post('/add-testimonial', [TestimonialController::class, 'store']);
 Route::post('/update-testimonial/{id}', [TestimonialController::class, 'update']);
 Route::post('/delete-testimonial/{id}', [TestimonialController::class, 'destroy']);
@@ -209,9 +206,9 @@ Route::post('/update-titleAvis/{id}', [TestimonialController::class, 'update2'])
 
 
 //contact
-Route::get('/contact', [ContactController::class, 'index']);
-Route::get('/edit-contact/{id}', [ContactController::class, 'edit']);
-Route::get('/edit-contactIntro/{id}', [ContactController::class, 'edit2']);
+Route::get('/contact', [ContactController::class, 'index'])->middleware('webmaster');
+Route::get('/edit-contact/{id}', [ContactController::class, 'edit'])->middleware('webmaster');
+Route::get('/edit-contactIntro/{id}', [ContactController::class, 'edit2'])->middleware('webmaster');
 Route::post('/update-contact/{id}', [ContactController::class, 'update']);
 Route::post('/update-contactIntro/{id}', [ContactController::class, 'update2']);
 
@@ -221,8 +218,8 @@ Route::get('/articlesAttente', [ArticleController::class, 'index2'])->middleware
 Route::get('/create-article', [ArticleController::class, 'create'])->middleware('redacteur');
 Route::post('/add-article', [ArticleController::class, 'store']);
 Route::get('/edit-article/{id}', [ArticleController::class, 'edit'])->middleware('redacteur');
-Route::post('/update-article/{id}', [ArticleController::class, 'update'])->middleware('redacteur');
-Route::post('/accepte-article/{id}', [ArticleController::class, 'update2'])->middleware('webmaster');
+Route::post('/update-article/{id}', [ArticleController::class, 'update']);
+Route::post('/accepte-article/{id}', [ArticleController::class, 'update2']);
 
 Route::post('/delete-article/{id}', [ArticleController::class, 'destroy']);
 Route::get('/article/{id}', [ArticleController::class, 'show'])->middleware('webmaster');
@@ -250,11 +247,11 @@ Route::post('/add-comment', [CommentaireController::class, 'store']);
 Route::post('/forms/contact.php', [EmailController::class, 'store']);
 
 //newsletter
-Route::get('/newsletters', [NewsletterController::class, 'index']);
+Route::get('/newsletters', [NewsletterController::class, 'index'])->middleware('webmaster');
 Route::post('/add-email', [NewsletterController::class, 'store']);
 Route::post('/delete-newsletter/{id}', [NewsletterController::class, 'destroy']);
 
 
 // liste d'emails de contact
-Route::get('/emails', [EmailController::class, 'index']);
+Route::get('/emails', [EmailController::class, 'index'])->middleware('admin');
 Route::post('/delete-email/{id}', [EmailController::class, 'destroy']);

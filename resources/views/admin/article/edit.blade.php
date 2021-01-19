@@ -4,6 +4,7 @@
 
 @section('content')
 <div class="container">
+@can('articleGate,$article')
     <form action="/update-article/{{$article->id}}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="container">
@@ -34,5 +35,6 @@
             </div>
             <button class="btn btn-success mt-4">Update</button>
     </form>
+    @endcan
 </div>
 @stop

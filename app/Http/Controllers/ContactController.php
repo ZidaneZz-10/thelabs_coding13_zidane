@@ -83,6 +83,7 @@ class ContactController extends Controller
         $update->lieu = $request->lieu;
         $update->tel = $request->tel;
         $update->mail = $request->mail;
+        $this->authorize('webmaster');
         $update->save();
         return redirect('/contact');
 
@@ -92,6 +93,7 @@ class ContactController extends Controller
         $update=ContactIntro::find($id);
         $update->titre = $request->titre;
         $update->texte = $request->texte;
+        $this->authorize('webmaster');
         $update->save();
         return redirect('/contact');
 

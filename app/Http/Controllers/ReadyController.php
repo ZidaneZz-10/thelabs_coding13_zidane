@@ -72,6 +72,7 @@ class ReadyController extends Controller
         $update->titre = $request->titre;
         $update->texte = $request->texte;
         $update->button = $request->button;
+        $this->authorize('webmaster');
         $update->save();
         return redirect('/ready');
     }

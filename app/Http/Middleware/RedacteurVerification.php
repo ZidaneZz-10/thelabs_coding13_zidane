@@ -17,10 +17,14 @@ class RedacteurVerification
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::user()->roles->role=='admin' || Auth::user()->roles->role=='webmaster' || Auth::user()->roles->role=='redacteur'){
+        if ( Auth::user()->role_id == 1 || Auth::user()->role_id == 3 || Auth::user()->role_id == 2 ){
+
             return $next($request);
+
         }else{
-            return redirect('/welcome');
-        };
+
+            return redirect()->back();
+
+        }
     }
 }

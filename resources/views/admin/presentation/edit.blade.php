@@ -3,6 +3,7 @@
 @section('title', 'AdminLTE')
 
 @section('content')
+@can('webmaster')
 <form action="/update-presentation/{{$presentation->id}}" method="post">
     <div class="container">
         <div>
@@ -21,5 +22,6 @@
         <button class="btn btn-success mt-4">Update</button>
     </div>
 </form>
+@endcan
 @stop
 

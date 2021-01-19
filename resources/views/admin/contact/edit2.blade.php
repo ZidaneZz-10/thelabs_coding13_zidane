@@ -3,6 +3,7 @@
 @section('title', 'AdminLTE')
 
 @section('content')
+@can('webmaster')
 <form action="/update-contactIntro/{{$contactIntro->id}}" method="post">
     @csrf
     <div class="container">
@@ -11,4 +12,5 @@
     </div>
     <button class="btn btn-success mt-4">Update</button>
 </form>
+@endcan
 @stop

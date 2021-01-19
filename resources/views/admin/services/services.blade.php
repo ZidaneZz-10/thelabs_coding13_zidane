@@ -12,11 +12,13 @@
         </div>
         <div class="col-6">
             <h2>Modifie ici : </h2>
+            @can('webmaster')
             <form action="/update-titleService/{{$title->id}}" method="post">
                 @csrf
                 <textarea name="titre" value="{{$title->titre}}" id="" cols="30" rows="10">{{$title->titre}}</textarea><br>
                 <button class="btn btn-primary mt-4 ">Update</button>
             </form>
+            @endcan
         </div>
         @endforeach
 
@@ -38,10 +40,12 @@
                 </div>
             </div>
             <a href="/edit-service/{{$service->id}}" class="btn btn-primary mt-4 mr-2">Edit</a>
+            @can('webmaster')
             <form action="/delete-service/{{$service->id}}" method="POST">
                 @csrf
                 <button type="submit" class="btn btn-danger mt-2">Delete</button><br><br>
             </form>
+            @endcan
         </div>
         @endforeach
     </div>

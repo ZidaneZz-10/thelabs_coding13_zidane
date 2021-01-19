@@ -3,6 +3,7 @@
 @section('title', 'AdminLTE')
 
 @section('content')
+@can('admin')
 <form action="/update-navbar/{{$navbar->id}}" method="post">
     <div class="container">
         <div>
@@ -15,4 +16,5 @@
         <button class="btn btn-success mt-4">Update</button>
     </div>
 </form>
+@endcan
 @stop

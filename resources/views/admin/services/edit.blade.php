@@ -3,6 +3,7 @@
 @section('title', 'AdminLTE')
 
 @section('content')
+@can('webmaster')
 <form action="/update-service/{{$service->id}}" method="post">
     @csrf
     <div class="container">
@@ -28,4 +29,5 @@
         </div>
     </div>
 </form>
+@endcan
 @stop

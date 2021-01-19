@@ -81,6 +81,7 @@ class LogoController extends Controller
     {
         $update = Logo::find($id);
         $update->image = $request->file('image')->hashName();
+        $this->authorize('admin');
         $update->save();
         Storage::disk('public')->delete('img/' . $update->image);
         $request->file('image')->storePublicly('img', 'public');

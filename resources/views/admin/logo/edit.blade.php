@@ -3,6 +3,7 @@
 @section('title', 'AdminLTE')
 
 @section('content')
+@can('admin')
 <form action="/update-logo/{{$logo->id}}" method="post" enctype="multipart/form-data">
     @csrf
     <div class="container">
@@ -19,4 +20,5 @@
         
     </div>
 </form>
+@endcan
 @stop

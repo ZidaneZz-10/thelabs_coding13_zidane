@@ -43,6 +43,7 @@ class TeamController extends Controller
         $membre->image = $request->file('image')->hashName();
         $membre->nom=$request->nom;
         $membre->fonction=$request->fonction;
+        $this->authorize('webmaster');
         $membre->save();
         $request->file('image')->storePublicly('img/team', 'public');
         return redirect('/team');
@@ -88,6 +89,7 @@ class TeamController extends Controller
         $update->image = $request->file('image')->hashName();
         $update->nom=$request->nom;
         $update->fonction=$request->fonction;
+        $this->authorize('webmaster');
         $update->save();
         // Storage::disk('public')->delete('img/team/' . $update->image);
         $request->file('image')->storePublicly('img/team', 'public');
@@ -97,6 +99,7 @@ class TeamController extends Controller
     {
         $update = TeamTitle::find($id);
         $update->titre=$request->titre;
+        $this->authorize('webmaster');
         $update->save();
         return redirect('/team');
     }
@@ -111,6 +114,7 @@ class TeamController extends Controller
     {
         $delete = Team::find($id);
         // Storage::disk('public')->delete('img/team' . $delete->image);
+        $this->authorize('webmaster');
         $delete->delete();
         return redirect()->back();
     }

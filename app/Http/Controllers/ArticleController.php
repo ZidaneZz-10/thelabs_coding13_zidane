@@ -59,6 +59,7 @@ class ArticleController extends Controller
         $newArticle->texte=$request->texte;
         $newArticle->statut=$request->statut;
         $newArticle->user_id=Auth::id();
+        $this->authorize('redacteur');
         $newArticle->save();
         $request->file('image')->storePublicly('img', 'public');
         $newArticle->tags()->syncWithoutDetaching($request->tags);
@@ -70,6 +71,7 @@ class ArticleController extends Controller
         $mails=Newsletter::all();
         $accepter = Article::find($id);
         $accepter->statut = $request->statut; 
+        $this->authorize('webmaster');
         $accepter->save();
         foreach ($mails as $mail) {
             Mail::to($mail->email)->send(new ArticleMail($request));
@@ -130,6 +132,7 @@ class ArticleController extends Controller
         $newArticle->user_id = Auth::user()->id;
         $newArticle->statut=$request->statut;
         $newArticle->image = $request->file('image')->hashName();
+        $this->authorize('articleGate',$newArticle);
         $newArticle->save();
         $newArticle->categories()->detach();
         $newArticle->tags()->detach();
@@ -151,6 +154,7 @@ class ArticleController extends Controller
         $delete=Article::find($id);
         Article::find($id)->tags()->detach();
         Article::find($id)->categories()->detach();
+        $this->authorize('articleGate',$delete);
         $delete->delete();
         return redirect()->back();
     }

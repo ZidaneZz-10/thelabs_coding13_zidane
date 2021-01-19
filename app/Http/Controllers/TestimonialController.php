@@ -43,6 +43,7 @@ class TestimonialController extends Controller
         $newTestimonial= new Testimonial;
         $newTestimonial->avis=$request->avis;
         $newTestimonial->team_id=$request->team_id;
+        $this->authorize('webmaster');
         $newTestimonial->save();
         return redirect('/testimonials');
     }
@@ -83,6 +84,7 @@ class TestimonialController extends Controller
         $update=Testimonial::find($id);
         $update->avis = $request->avis;
         $update->team_id = $request->team_id;
+        $this->authorize('webmaster');
         $update->save();
         return redirect('/testimonials');
     }
@@ -90,6 +92,7 @@ class TestimonialController extends Controller
     {
         $update = TestimonialTitle::find($id);
         $update->titre=$request->titre;
+        $this->authorize('webmaster');
         $update->save();
         return redirect('/testimonials');
     }
@@ -102,6 +105,7 @@ class TestimonialController extends Controller
     public function destroy($id)
     {
         $delete = Testimonial::find($id);
+        $this->authorize('webmaster');
         $delete->delete();
         return redirect()->back();
     }

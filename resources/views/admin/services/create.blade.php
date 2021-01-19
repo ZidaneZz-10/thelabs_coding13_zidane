@@ -4,6 +4,7 @@
 
 @section('content')
 <div class="container">
+    @can('webmaster')
     <form action="/add-service" method="POST">
         @csrf
         <label for="titre" class="mt-3">Titre : <br><input type="text" name="titre" id="titre"></label><br>
@@ -17,5 +18,6 @@
 
             <button type="submit">Add</button>
     </form>
+    @endcan
 </div>
 @stop

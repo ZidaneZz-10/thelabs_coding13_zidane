@@ -21,10 +21,12 @@
             <td class="border border-dark text-center p-2">{{$mail->subject}}</td>
             <td class="border border-dark text-center p-2">{{$mail->message}}</td>
             <td class="border border-dark text-center p-2">
+                @can('admin')
                 <form action="/delete-email/{{$mail->id}}" method="POST">
                     @csrf
                     <button type="submit" class="btn btn-danger mt-2">Delete</button><br><br>
                 </form>
+                @endcan
             </td>
         </tr>
         @endforeach

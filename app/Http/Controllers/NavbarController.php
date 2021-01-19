@@ -77,6 +77,7 @@ class NavbarController extends Controller
         $update->elem2 = $request->elem2;
         $update->elem3 = $request->elem3;
         $update->elem4 = $request->elem4;
+        $this->authorize('admin');
         $update->save();
         return redirect('/navbar');
     }

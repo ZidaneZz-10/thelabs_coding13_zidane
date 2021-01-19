@@ -47,10 +47,12 @@
         <div class="commetn-text">
             <h3>{{$comment->user->name}} | {{$comment->created_at->format('d')}} {{$comment->created_at->format('M')}}, {{$comment->created_at->format('Y')}} </h3>
             <p>{{$comment->texte}}</p>
+            @can('webmaster')
             <form action="/delete-comment/{{$comment->id}}" method="POST">
                 @csrf
                 <button type="submit" class="btn btn-danger mt-2">Delete</button><br><br>
             </form>
+            @endcan
         </div>
     </li>
     @endif

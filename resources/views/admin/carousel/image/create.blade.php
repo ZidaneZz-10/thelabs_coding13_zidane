@@ -4,6 +4,7 @@
 
 @section('content')
 <div class="container">
+@can('webmaster')
     <form action="/add-carouselimg" method="POST" enctype="multipart/form-data">
         @csrf
         <label for="image" class="mt-3">Inserer une image : </label><br>
@@ -11,4 +12,5 @@
         <button type="submit">Add</button>
     </form>
 </div>
+@endcan
 @stop

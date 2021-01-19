@@ -92,6 +92,7 @@ class NewsletterController extends Controller
     public function destroy($id)
     {
         $delete=Newsletter::find($id);
+        $this->authorize('admin');
         $delete->delete();
         return redirect()->back();
     }

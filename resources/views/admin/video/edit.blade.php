@@ -3,6 +3,7 @@
 @section('title', 'AdminLTE')
 
 @section('content')
+@can('webmaster')
 <form action="/update-video/{{$video->id}}" method="post" enctype="multipart/form-data">
     @csrf
     <div class="container">
@@ -12,4 +13,5 @@
 
     </div>
 </form>
+@endcan
 @stop

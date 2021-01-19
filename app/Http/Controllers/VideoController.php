@@ -73,6 +73,7 @@ class VideoController extends Controller
     public function update(Request $request, $id)
     {
         $update = Video::find($id);
+        $this->authorize('webmaster');
         $update->image = $request->file('image')->hashName();
         $update->url = $request->url;
         $update->save();
