@@ -54,13 +54,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/welcome', function () {
-    return view('welcome2');
-});
 
 Route::get('/blog', function () {
     $articles = Article::paginate(3);
@@ -129,7 +122,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 // Affichage vers site principale
-Route::get('/welcome', function () {
+Route::get('/', function () {
     $navbar = Navbar::find(1);
     $carouselImg = Carousel::all();
     $textCarousel = TextCarousel::all();

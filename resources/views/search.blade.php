@@ -48,7 +48,7 @@
 		<div class="responsive"><i class="fa fa-bars"></i></div>
 		<nav>
 			<ul class="menu-list">
-				<li><a href="/welcome">{{$navbar->elem1}}</a></li>
+				<li><a href="/">{{$navbar->elem1}}</a></li>
 				<li><a href="/services">{{$navbar->elem2}}</a></li>
 				<li class="active"><a href="/blog">{{$navbar->elem3}}</a></li>
 				<li><a href="/contactMap">{{$navbar->elem4}}</a></li>
@@ -151,21 +151,22 @@
 					<div class="widget-item">
 						<h2 class="widget-title">Categories</h2>
 						<ul>
-							@foreach($categories as $categorie)
-							<li><a href="#">{{$categorie->titre}}</a></li>
-							@endforeach
+						@foreach($article->categories as $cat)
+							<li><a href="#">{{$cat->titre}}</a></li>
+						@endforeach
+							
 						</ul>
 					</div>
+
 					<!-- Single widget -->
 					<div class="widget-item">
 						<h2 class="widget-title">Tags</h2>
 						<ul class="tag">
-							@foreach($tags as $tag)
+						@foreach($article->tags as $tag)
 							<li><a href="#">{{$tag->name}}</a></li>
-							@endforeach
+						@endforeach
 						</ul>
 					</div>
-
 				</div>
 			</div>
 		</div>

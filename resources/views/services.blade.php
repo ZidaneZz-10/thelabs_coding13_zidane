@@ -48,7 +48,7 @@
 		<div class="responsive"><i class="fa fa-bars"></i></div>
 		<nav>
 			<ul class="menu-list">
-				<li><a href="/welcome">{{$navbar->elem1}}</a></li>
+				<li><a href="/">{{$navbar->elem1}}</a></li>
 				<li class="active"><a href="/services">{{$navbar->elem2}}</a></li>
 				<li><a href="/blog">{{$navbar->elem3}}</a></li>
 				<li><a href="/contactMap">{{$navbar->elem4}}</a></li>
@@ -120,7 +120,7 @@
 
 			</div>
 			<div class="text-center">
-				<a href="" class="site-btn">Browse</a>
+				<a href="#serviceP" class="site-btn">Browse</a>
 			</div>
 		</div>
 	</div>
@@ -135,7 +135,7 @@
 				<h2>Get in <span>the Lab</span> and discover the world</h2>
 			</div>
 					<!-- features section -->
-			<div class="row">
+			<div class="row" id="serviceP">
 				<!-- feature item -->
 				<div class="col-md-4 col-sm-4 features">
 					@foreach ($servicePrime->take(3) as $item)
@@ -185,7 +185,7 @@
 				</div>
 			</div>
 			<div class="text-center mt100">
-				<a href="#3cards" class="site-btn">Browse</a>
+				<a href="#" class="site-btn">Browse</a>
 			</div>
 		</div>
 	</div>
@@ -194,7 +194,7 @@
 
 
 	<!-- services card section-->
-	<div class="services-card-section spad">
+	<div class="services-card-section spad" >
 		<div class="container">
 			<div class="row">
 			@foreach($articles as $article)

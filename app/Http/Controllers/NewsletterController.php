@@ -44,9 +44,7 @@ class NewsletterController extends Controller
         $newEntry->email=$request->email;
         $mails=Newsletter::all();
         foreach($mails as $mail){
-            if($mail->email==$newEntry->email){
                 $mail->notify(new message($newEntry));
-            }
         }
         $newEntry->save();
         return redirect()->back();

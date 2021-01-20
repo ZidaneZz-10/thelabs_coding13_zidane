@@ -48,7 +48,7 @@
 		<div class="responsive"><i class="fa fa-bars"></i></div>
 		<nav>
 			<ul class="menu-list">
-				<li><a href="/welcome">{{$navbar->elem1}}</a></li>
+				<li><a href="/">{{$navbar->elem1}}</a></li>
 				<li><a href="/services">{{$navbar->elem2}}</a></li>
 				<li class="active"><a href="/blog">{{$navbar->elem3}}</a></li>
 				<li><a href="/contactMap">{{$navbar->elem4}}</a></li>

@@ -231,7 +231,7 @@ return [
         ],
         [
             'text'        => 'Site Principal',
-            'url'         => '/welcome',
+            'url'         => '/',
             'icon'        => 'fas fa-undo-alt',
         ],
         ['header' => 'account_settings'],

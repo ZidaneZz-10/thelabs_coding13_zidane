@@ -48,7 +48,7 @@
 		<div class="responsive"><i class="fa fa-bars"></i></div>
 		<nav>
 			<ul class="menu-list">
-				<li class="active"><a href="/welcome">{{$navbar->elem1}}</a></li>
+				<li class="active"><a href="/">{{$navbar->elem1}}</a></li>
 				<li><a href="/services">{{$navbar->elem2}}</a></li>
 				<li><a href="/blog">{{$navbar->elem3}}</a></li>
 				<li><a href="/contactMap">{{$navbar->elem4}}</a></li>
@@ -142,7 +142,7 @@
 					</div>
 				</div>
 				<div class="text-center mt60">
-					<a href="" class="site-btn">{{$presentation->button}}</a>
+					<a href="#formContact" class="site-btn">{{$presentation->button}}</a>
 				</div>
 				<!-- popup video -->
 				<div class="intro-video">
@@ -332,7 +332,7 @@
 					<p class="con-item">{{$contact->mail}}</p>
 				</div>
 				<!-- contact form -->
-				<div class="col-md-6 col-pull">
+				<div class="col-md-6 col-pull" id="formContact">
 					<form class="form-class" action="forms/contact.php" method="post" id="con_form">
 						@csrf
 						<div class="row">
