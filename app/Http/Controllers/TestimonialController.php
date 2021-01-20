@@ -40,6 +40,10 @@ class TestimonialController extends Controller
      */
     public function store(Request $request)
     {
+        $validateData = $request->validate([
+            'avis' => 'required',
+            'team_id' => 'required',
+        ]);
         $newTestimonial= new Testimonial;
         $newTestimonial->avis=$request->avis;
         $newTestimonial->team_id=$request->team_id;

@@ -40,6 +40,11 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
+        $validateData = $request->validate([
+            'titre' => 'required',
+            'texte' => 'required',
+            'icon_id' => 'required',
+        ]);
         $newService= new Service;
         $newService->titre=$request->titre;
         $newService->texte=$request->texte;

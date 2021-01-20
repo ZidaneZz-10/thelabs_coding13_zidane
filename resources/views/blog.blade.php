@@ -136,17 +136,18 @@
 						</div>
 					</div>
 					@endforeach
-					<div class="text-center ">{{$articles->links()}}</div>
-				</div>
+					<div class="text-center ">{{$articles->fragment('article')->links('vendor.pagination.bootstrap-4') }}
+					</div>				</div>
 				<!-- Sidebar area -->
 				<div class="col-md-4 col-sm-5 sidebar">
-					<!-- Single widget -->
-					<div class="widget-item">
-						<form action="#" class="search-form">
-							<input type="text" placeholder="Search">
-							<button class="search-btn"><i class="flaticon-026-search"></i></button>
-						</form>
-					</div>
+                        <!-- Single widget -->
+                        <div class="widget-item">
+                        <form action="/search" method="get" class="search-form">
+
+                            <input type="text" name="query" placeholder="Search">
+                            <button type="submit" class="search-btn"><i class="flaticon-026-search"></i></button>
+                        </form>
+                    </div>
 					<!-- Single widget -->
 					<div class="widget-item">
 						<h2 class="widget-title">Categories</h2>
@@ -183,7 +184,7 @@
 				<div class="col-md-9">
 					<!-- newsletter form -->
 					<form class="nl-form" action="/add-email" method="POST">
-					@csrf
+						@csrf
 						<input type="text" name="email" placeholder="Your e-mail here">
 						<button type="submit" class="site-btn btn-2">Newsletter</button>
 					</form>
@@ -196,7 +197,7 @@
 
 	<!-- Footer section -->
 	<footer class="footer-section">
-		<h2>2017 All rights reserved. Designed by <a href="https://colorlib.com" target="_blank">Colorlib</a></h2>
+		<h2>{{$footer->texte}} <a href="https://colorlib.com" target="_blank">{{$footer->company}}</a></h2>
 	</footer>
 	<!-- Footer section end -->
 

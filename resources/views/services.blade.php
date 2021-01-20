@@ -197,42 +197,20 @@
 	<div class="services-card-section spad">
 		<div class="container">
 			<div class="row">
+			@foreach($articles as $article)
 				<!-- Single Card -->
 				<div class="col-md-4 col-sm-6">
 					<div class="sv-card">
 						<div class="card-img">
-							<img src="img/card-1.jpg" alt="">
+							<img src="{{asset('img/'.$article->image)}}" alt="">
 						</div>
 						<div class="card-text">
-							<h2>Get in the lab</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla..</p>
+							<h2>{{$article->titre}}</h2>
+							<p>{{$article->texte}}</p>
 						</div>
 					</div>
 				</div>
-				<!-- Single Card -->
-				<div class="col-md-4 col-sm-6">
-					<div class="sv-card">
-						<div class="card-img">
-							<img src="img/card-2.jpg" alt="">
-						</div>
-						<div class="card-text">
-							<h2>Projects online</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla..</p>
-						</div>
-					</div>
-				</div>
-				<!-- Single Card -->
-				<div class="col-md-4 col-sm-12">
-					<div class="sv-card">
-						<div class="card-img">
-							<img src="img/card-3.jpg" alt="">
-						</div>
-						<div class="card-text">
-							<h2>SMART MARKETING</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla..</p>
-						</div>
-					</div>
-				</div>
+				@endforeach
 			</div>
 		</div>
 	</div>
@@ -248,9 +226,10 @@
 				</div>
 				<div class="col-md-9">
 					<!-- newsletter form -->
-					<form class="nl-form">
-						<input type="text" placeholder="Your e-mail here">
-						<button class="site-btn btn-2">Newsletter</button>
+					<form class="nl-form" action="/add-email" method="POST">
+						@csrf
+						<input type="text" name="email" placeholder="Your e-mail here">
+						<button type="submit" class="site-btn btn-2">Newsletter</button>
 					</form>
 				</div>
 			</div>
@@ -265,18 +244,19 @@
 			<div class="row">
 				<!-- contact info -->
 				<div class="col-md-5 col-md-offset-1 contact-info col-push">
-					<div class="section-title left">
-						<h2>Contact us</h2>
+				<div class="section-title left">
+						<h2>{{$contactIntro->titre}}</h2>
 					</div>
-					<p>Cras ex mauris, ornare eget pretium sit amet, dignissim et turpis. Nunc nec maximus dui, vel suscipit dolor. Donec elementum velit a orci facilisis rutrum. </p>
-					<h3 class="mt60">Main Office</h3>
-					<p class="con-item">C/ Libertad, 34 <br> 05200 Arévalo </p>
-					<p class="con-item">0034 37483 2445 322</p>
-					<p class="con-item">hello@company.com</p>
+					<p>{{$contactIntro->texte}}</p>
+					<h3 class="mt60">{{$contact->titre}}</h3>
+					<p class="con-item">{{$contact->lieu}}</p>
+					<p class="con-item">{{$contact->tel}}</p>
+					<p class="con-item">{{$contact->mail}}</p>
 				</div>
 				<!-- contact form -->
 				<div class="col-md-6 col-pull">
-					<form class="form-class" id="con_form">
+				<form class="form-class" action="forms/contact.php" method="post" id="con_form">
+						@csrf
 						<div class="row">
 							<div class="col-sm-6">
 								<input type="text" name="name" placeholder="Your name">
@@ -287,7 +267,7 @@
 							<div class="col-sm-12">
 								<input type="text" name="subject" placeholder="Subject">
 								<textarea name="message" placeholder="Message"></textarea>
-								<button class="site-btn">send</button>
+								<button class="site-btn" type="submit">send</button>
 							</div>
 						</div>
 					</form>
@@ -300,7 +280,7 @@
 
 	<!-- Footer section -->
 	<footer class="footer-section">
-		<h2>2017 All rights reserved. Designed by <a href="https://colorlib.com" target="_blank">Colorlib</a></h2>
+	<h2>{{$footer->texte}} <a href="https://colorlib.com" target="_blank">{{$footer->company}}</a></h2>
 	</footer>
 	<!-- Footer section end -->
 

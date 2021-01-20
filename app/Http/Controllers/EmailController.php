@@ -17,8 +17,8 @@ class EmailController extends Controller
      */
     public function index()
     {
-        $mails=Email::all();
-        return view('admin.mail.mail',compact('mails'));
+        $mails = Email::all();
+        return view('admin.mail.mail', compact('mails'));
     }
 
     /**
@@ -39,11 +39,17 @@ class EmailController extends Controller
      */
     public function store(Request $request)
     {
-        $newEntry=new Email;
-        $newEntry->name=$request->name;
-        $newEntry->email=$request->email;
-        $newEntry->subject=$request->subject;
-        $newEntry->message=$request->message;
+        $validateData = $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'subject' => 'required',
+            'message' => 'required',
+        ]);
+        $newEntry = new Email;
+        $newEntry->name = $request->name;
+        $newEntry->email = $request->email;
+        $newEntry->subject = $request->subject;
+        $newEntry->message = $request->message;
         Mail::to("ouldessayda@gmail.Com")->send(new MailSender($request));
         $newEntry->save();
         return redirect()->back();
@@ -91,7 +97,7 @@ class EmailController extends Controller
      */
     public function destroy($id)
     {
-        $delete=Email::find($id);
+        $delete = Email::find($id);
         $this->authorize('admin');
         $delete->delete();
         return redirect()->back();

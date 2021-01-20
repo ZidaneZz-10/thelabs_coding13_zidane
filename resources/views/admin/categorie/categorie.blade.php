@@ -7,7 +7,7 @@
     <h2>Create a Categorie : </h2>
     <form action="/add-categorie" method="POST">
         @csrf
-        <label for="titre" class="mt-3">Titre : <br><input type="text" name="titre" id="titre"></label><br>
+        <label for="titre" class="mt-3">Titre : <br><input type="text" name="titre" value="{{old('titre')}}" id="titre"></label><br>
         <button type="submit">Add</button>
     </form>
     <br>

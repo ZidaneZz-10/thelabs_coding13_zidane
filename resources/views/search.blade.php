@@ -11,7 +11,7 @@
 	<link href="img/favicon.ico" rel="shortcut icon" />
 
 	<!-- Google Fonts -->
-	<link href="https://fonts.googleapis.com/css?family=Oswald:300,400,500,700|Roboto:300,400,600" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Oswald:300,400,500,700|Roboto:300,400,700" rel="stylesheet">
 
 	<!-- Stylesheets -->
 	<link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}" />
@@ -101,8 +101,9 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-8 col-sm-7 blog-posts">
-					<!-- Single Post -->
-					<div class="single-post">
+					@foreach($articles as $article)
+					<!-- Post item -->
+					<div class="post-item">
 						<div class="post-thumbnail">
 							<img src="{{asset('img/'.$article->image)}}" alt="">
 							<div class="post-date">
@@ -119,7 +120,6 @@
 									{{$item->name}},
 									@endforeach</a>
 								<div style="display: none;">{{$a=0}}</div>
-
 								@foreach ($commentaires as $elem)
 								@if ($elem->article_id == $article->id)
 								<div style="display: none;">{{$a++}}</div>
@@ -127,93 +127,15 @@
 								@endif
 
 								@endforeach
-
 								<a href="">Comment ({{$a}})</a>
 							</div>
-							<p>{{$article->texte}}</p>
+							<p>{{Str::limit($article->texte, 200, '...') }}</p>
+							<a href="/blog-post/{{$article->id}}" class="read-more">Read More</a>
+
+
 						</div>
-						<!-- Post Author -->
-						<div class="author">
-							<div class="avatar">
-								<img src="img/avatar/03.jpg" alt="">
-							</div>
-							<div class="author-info">
-								<h2>{{$article->user->name}}, <span>Author</span></h2>
-								<p>Vivamus in urna eu enim porttitor consequat. Proin vitae pulvinar libero. Proin ut hendrerit metus. Aliquam erat volutpat. Donec fermen tum convallis ante eget tristique. </p>
-							</div>
-						</div>
-						<!-- Post Comments -->
-						<div class="comments">
-							<div style="display: none;">{{$a=0}}</div>
-
-							@foreach ($commentaires as $elem)
-							@if ($elem->article_id == $article->id)
-							<div style="display: none;">{{$a++}}</div>
-							@else
-							@endif
-
-							@endforeach
-
-							<a href="">Comment ({{$a}})</a>
-							<ul class="comment-list">
-							@foreach($commentaires as $comment)
-								@if($comment->article_id==$article->id)
-								<li>
-									<div class="avatar">
-										<img src="img/avatar/01.jpg" alt="">
-									</div>
-									<div class="commetn-text">
-										<h3>{{$comment->user->name}} | {{$comment->created_at->format('d')}} {{$comment->created_at->format('M')}}, {{$comment->created_at->format('Y')}} </h3>
-										<p>{{$comment->texte}}</p>
-									</div>
-								</li>
-								@endif
-								@endforeach
-							</ul>
-						</div>
-						<!-- Commert Form -->
-						@if (Auth::check())
-						<div class="row">
-							<div class="col-md-9 comment-from">
-								<h2>Leave a comment</h2>
-								<form class="form-class" method="POST" action="/add-comment">
-									@csrf
-									<div class="row">
-										<div class="col-sm-6">
-											<input type="text" name="user_id" disabled value="{{Auth::user()->name}}" placeholder="Your name">
-										</div>
-										<div class="col-sm-6" style="display: none;">
-											<input type="text" name="article_id"  value="{{$article->id}}" placeholder="Your name">
-										</div>
-										<div class="col-sm-6">
-											<input type="text" value="{{Auth::user()->email}}" disabled placeholder="Your email">
-										</div>
-										<div class="col-sm-12">
-
-											<textarea name="texte" placeholder="Message"></textarea>
-
-											<button class="site-btn" type="submit">Send</button>
-										</div>
-									</div>
-								</form>
-							</div>
-						</div>
-
-						@else
-
-						<div class="row">
-							<button style="font-size: 30px" class="mr-5 btn btn-primary">
-								<a class="px-3 text-white " href="{{ route('login') }}">Login</a>
-							</button>
-							@if (Route::has('register'))
-							<button style="font-size: 30px" class="btn btn-danger">
-								<a class="px-3 text-white " href="{{ route('register') }}">Register</a>
-							</button>
-							@endif
-						</div>
-
-						@endif
 					</div>
+					@endforeach
 				</div>
 				<!-- Sidebar area -->
 				<div class="col-md-4 col-sm-5 sidebar">
@@ -229,22 +151,21 @@
 					<div class="widget-item">
 						<h2 class="widget-title">Categories</h2>
 						<ul>
-						@foreach($article->categories as $cat)
-							<li><a href="#">{{$cat->titre}}</a></li>
-						@endforeach
-							
+							@foreach($categories as $categorie)
+							<li><a href="#">{{$categorie->titre}}</a></li>
+							@endforeach
 						</ul>
 					</div>
-
 					<!-- Single widget -->
 					<div class="widget-item">
 						<h2 class="widget-title">Tags</h2>
 						<ul class="tag">
-						@foreach($article->tags as $tag)
+							@foreach($tags as $tag)
 							<li><a href="#">{{$tag->name}}</a></li>
-						@endforeach
+							@endforeach
 						</ul>
 					</div>
+
 				</div>
 			</div>
 		</div>
@@ -275,15 +196,19 @@
 
 	<!-- Footer section -->
 	<footer class="footer-section">
-		<h2>2017 All rights reserved. Designed by <a href="https://colorlib.com" target="_blank">Colorlib</a></h2>
+		<h2>{{$footer->texte}} <a href="https://colorlib.com" target="_blank">{{$footer->company}}</a></h2>
 	</footer>
 	<!-- Footer section end -->
 
 
 
+
 	<!--====== Javascripts & Jquery ======-->
 	<script src="{{asset('js/jquery-2.1.4.min.js')}}"></script>
+	<script src="{{asset('js/bootstrap.min.js')}}"></script>
+	<script src="{{asset('js/magnific-popup.min.js')}}"></script>
 	<script src="{{asset('js/owl.carousel.min.js')}}"></script>
+	<script src="{{asset('js/circle-progress.min.js')}}"></script>
 	<script src="{{asset('js/main.js')}}"></script>
 </body>
 

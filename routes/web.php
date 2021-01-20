@@ -8,6 +8,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\EmailController;
 use App\Http\Controllers\FooterController;
 use App\Http\Controllers\LogoController;
+use App\Http\Controllers\MapController;
 use App\Http\Controllers\NavbarController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\PresentationController;
@@ -24,6 +25,7 @@ use App\Models\Commentaire;
 use App\Models\Contact;
 use App\Models\ContactIntro;
 use App\Models\Footer;
+use App\Models\Map;
 use App\Models\Navbar;
 use App\Models\Presentation;
 use App\Models\Ready;
@@ -65,18 +67,29 @@ Route::get('/blog', function () {
     $navbar = Navbar::find(1);
     $tags = Tag::all();
     $categories = Categorie::all();
-    return view('blog', compact('articles', 'tags', 'categories', 'navbar', 'commentaires'));
+    $footer = Footer::find(1);
+
+    return view('blog', compact('articles', 'tags', 'footer', 'categories', 'navbar', 'commentaires'));
 });
+Route::get('/search', [ArticleController::class, 'search']);
 
 Route::get('/contactMap', function () {
     $navbar = Navbar::find(1);
-    return view('contact',compact('navbar'));
+    $footer = Footer::find(1);
+    $contact = Contact::find(1);
+    $map=Map::find(1);
+
+    $contactIntro = ContactIntro::find(1);
+
+    return view('contact', compact('navbar', 'map','footer', 'contact', 'contactIntro'));
 });
 Route::get('/blog-post/{id}', function ($id) {
     $navbar = Navbar::find(1);
     $commentaires = Commentaire::all();
     $article = Article::find($id);
-    return view('blog-post', compact('article', 'navbar', 'commentaires'));
+    $footer = Footer::find(1);
+
+    return view('blog-post', compact('article', 'footer', 'navbar', 'commentaires'));
 });
 
 Route::get('/services', function () {
@@ -93,7 +106,17 @@ Route::get('/services', function () {
     $teams = Team::inRandomOrder()->get();
     $counter = 0;
     $ok = 1;
-    return view('services', compact('services', 'str3', 'servicePrime', 'limite', 'navbar'));
+
+    $contact = Contact::find(1);
+
+    $contactIntro = ContactIntro::find(1);
+
+    $footer = Footer::find(1);
+
+    $articles = Article::orderByDesc('id')->limit(3)->get();
+
+
+    return view('services', compact('services', 'articles', 'footer', 'str3', 'servicePrime', 'limite', 'navbar', 'contact', 'contactIntro'));
 });
 
 
@@ -130,7 +153,7 @@ Route::get('/welcome', function () {
     $video = Video::find(1);
 
     $testimonialTitle = TestimonialTitle::find(1);
-    $testimonials=Testimonial::orderbydesc('id')->limit(6)->paginate(2);
+    $testimonials = Testimonial::orderbydesc('id')->limit(6)->paginate(6);
 
     $ready = Ready::find(1);
 
@@ -142,9 +165,9 @@ Route::get('/welcome', function () {
     $counter = 0;
     $ok = 1;
 
-    $footer=Footer::find(1);
+    $footer = Footer::find(1);
 
-    return view('welcome2', compact('navbar',"footer", 'testimonials','carouselImg', 'textCarousel', 'serviceCards', 'services', 'presentation', 'video', 'ready', 'contact', 'contactIntro', 'str2', 'str3', 'serviceTitle', 'str4', 'teamTitle', 'testimonialTitle', 'teams', 'counter', 'ok'));
+    return view('welcome2', compact('navbar', "footer", 'testimonials', 'carouselImg', 'textCarousel', 'serviceCards', 'services', 'presentation', 'video', 'ready', 'contact', 'contactIntro', 'str2', 'str3', 'serviceTitle', 'str4', 'teamTitle', 'testimonialTitle', 'teams', 'counter', 'ok'));
 });
 
 //Navbar
@@ -272,4 +295,7 @@ Route::get('/footer', [FooterController::class, 'index'])->middleware('webmaster
 Route::get('/edit-footer/{id}', [FooterController::class, 'edit'])->middleware(('webmaster'));
 Route::post('/update-footer/{id}', [FooterController::class, 'update']);
 
-
+//map 
+Route::get('/map', [MapController::class, 'index'])->middleware('webmaster');
+Route::get('/edit-map/{id}', [MapController::class, 'edit'])->middleware(('webmaster'));
+Route::post('/update-map/{id}', [MapController::class, 'update']);

@@ -41,6 +41,7 @@ class DatabaseSeeder extends Seeder
             NewsletterSeeder::class,
             EmailSeeder::class,
             FooterSeeder::class,
+            MapSeeder::class,
         ]);
     }
 }

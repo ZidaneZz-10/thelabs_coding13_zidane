@@ -39,6 +39,11 @@ class TeamController extends Controller
      */
     public function store(Request $request)
     {
+        $validateData = $request->validate([
+            'image' => 'required',
+            'nom' => 'required',
+            'fonction' => 'required',
+        ]);
         $membre = new Team;
         $membre->image = $request->file('image')->hashName();
         $membre->nom=$request->nom;

@@ -42,6 +42,9 @@ class CarouselController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request){
+        $validateData=$request->validate([
+            'image'=>'required',
+        ]);
         $newimg = new Carousel;
         $newimg->image = $request->file('image')->hashName();
         $this->authorize('webmaster');

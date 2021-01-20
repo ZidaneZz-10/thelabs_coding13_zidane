@@ -36,6 +36,9 @@ class CategorieController extends Controller
      */
     public function store(Request $request)
     {
+        $validateData=$request->validate([
+            'titre'=>'required',
+        ]);
         $newCategorie = new Categorie;
         $newCategorie->titre = $request->titre;
         $newCategorie->save();

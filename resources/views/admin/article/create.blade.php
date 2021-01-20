@@ -7,9 +7,9 @@
   @can('redacteur')
   <form action="/add-article" method="POST" enctype="multipart/form-data">
     @csrf
-    <label for="image" class="mt-3">Inserer une image : <br><input type="file" name="image" id="image" class="w-50"></label><br>
-    <label for="titre" class="mt-3">Titre : <br><input type="text" name="titre" id="titre"></label><br>
-    <label for="texte" class="mt-3">Texte : <br><textarea name="texte" id="texte" cols="30" rows="10"></textarea><br>
+    <label for="image" class="mt-3">Inserer une image : <br><input type="file" name="image" value="{{old('image')}}" id="image" class="w-50"></label><br>
+    <label for="titre" class="mt-3">Titre : <br><input type="text" name="titre" value="{{old('titre')}}" id="titre"></label><br>
+    <label for="texte" class="mt-3">Texte : <br><textarea name="texte" id="texte" cols="30" rows="10">{{old('texte')}}</textarea><br>
       <input type="text" name="statut" value="waiting" style="display: none;">
 
       <label>Tags</label>
@@ -31,4 +31,5 @@
   @endcan
 
 </div>
+
 @stop

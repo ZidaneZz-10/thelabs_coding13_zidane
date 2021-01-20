@@ -37,6 +37,9 @@ class NewsletterController extends Controller
      */
     public function store(Request $request)
     {
+        $validateData = $request->validate([
+            'email' => 'required',
+        ]);
         $newEntry=new Newsletter;
         $newEntry->email=$request->email;
         $mails=Newsletter::all();

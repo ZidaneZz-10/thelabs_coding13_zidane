@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Commentaire;
+use App\Models\Map;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class CommentaireController extends Controller
+class MapController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +14,8 @@ class CommentaireController extends Controller
      */
     public function index()
     {
-        //
+        $maps=Map::all();
+        return view('admin.map.map',compact('maps'));
     }
 
     /**
@@ -36,26 +36,16 @@ class CommentaireController extends Controller
      */
     public function store(Request $request)
     {
-        $validateData=$request->validate([
-            'texte'=>'required',
-            'article_id'=>'required',
-        ]);
-
-        $newCommantaire= New Commentaire;
-        $newCommantaire->texte=$request->texte;
-        $newCommantaire->article_id=$request->article_id;
-        $newCommantaire->user_id = Auth::id();
-        $newCommantaire->save();
-        return redirect()->back();
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Commentaire  $commentaire
+     * @param  \App\Models\Map  $map
      * @return \Illuminate\Http\Response
      */
-    public function show(Commentaire $commentaire)
+    public function show(Map $map)
     {
         //
     }
@@ -63,36 +53,40 @@ class CommentaireController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Commentaire  $commentaire
+     * @param  \App\Models\Map  $map
      * @return \Illuminate\Http\Response
      */
-    public function edit(Commentaire $commentaire)
+    public function edit($id)
     {
-        //
+        $map=Map::find($id);
+        return view('admin.map.edit',compact('map'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Commentaire  $commentaire
+     * @param  \App\Models\Map  $map
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Commentaire $commentaire)
+    public function update(Request $request, $id)
     {
-        //
+        $update=Map::find($id);
+        $update->localisation=$request->localisation;
+        $this->authorize('webmaster');
+        $update->save();
+        return redirect('/map');
+
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Commentaire  $commentaire
+     * @param  \App\Models\Map  $map
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Map $map)
     {
-        $delete=Commentaire::find($id);
-        $delete->delete();
-        return redirect()->back();
+        //
     }
 }

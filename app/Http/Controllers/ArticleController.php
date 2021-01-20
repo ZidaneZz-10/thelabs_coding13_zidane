@@ -6,6 +6,8 @@ use App\Mail\ArticleMail;
 use App\Models\Article;
 use App\Models\Categorie;
 use App\Models\Commentaire;
+use App\Models\Footer;
+use App\Models\Navbar;
 use App\Models\Newsletter;
 use App\Models\Tag;
 use Illuminate\Http\Request;
@@ -22,15 +24,15 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articles=Article::all();
-        $commentaires=Commentaire::all();
-        return view('admin.article.article',compact('articles','commentaires'));
+        $articles = Article::all();
+        $commentaires = Commentaire::all();
+        return view('admin.article.article', compact('articles', 'commentaires'));
     }
     public function index2()
     {
-        $articles=Article::all();
-        $commentaires=Commentaire::all();
-        return view('admin.article.attente',compact('articles','commentaires'));
+        $articles = Article::all();
+        $commentaires = Commentaire::all();
+        return view('admin.article.attente', compact('articles', 'commentaires'));
     }
 
     /**
@@ -40,9 +42,9 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        $tags=Tag::all();
-        $categories=Categorie::all();
-        return view('admin.article.create',compact("tags",'categories'));
+        $tags = Tag::all();
+        $categories = Categorie::all();
+        return view('admin.article.create', compact("tags", 'categories'));
     }
 
     /**
@@ -53,12 +55,17 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        $newArticle= new Article;
+        $validateData = $request->validate([
+            'image' => 'required',
+            'titre' => 'required',
+        ]);
+
+        $newArticle = new Article;
         $newArticle->image = $request->file('image')->hashName();
-        $newArticle->titre=$request->titre;
-        $newArticle->texte=$request->texte;
-        $newArticle->statut=$request->statut;
-        $newArticle->user_id=Auth::id();
+        $newArticle->titre = $request->titre;
+        $newArticle->texte = $request->texte;
+        $newArticle->statut = $request->statut;
+        $newArticle->user_id = Auth::id();
         $this->authorize('redacteur');
         $newArticle->save();
         $request->file('image')->storePublicly('img', 'public');
@@ -66,17 +73,17 @@ class ArticleController extends Controller
         $newArticle->categories()->syncWithoutDetaching($request->cats);
         return redirect('/articles');
     }
-    public function update2(Request $request,$id)
+    public function update2(Request $request, $id)
     {
-        $mails=Newsletter::all();
+        $mails = Newsletter::all();
         $accepter = Article::find($id);
-        $accepter->statut = $request->statut; 
+        $accepter->statut = $request->statut;
         $this->authorize('webmaster');
         $accepter->save();
         foreach ($mails as $mail) {
             Mail::to($mail->email)->send(new ArticleMail($request));
         }
-        return redirect()->back(); 
+        return redirect()->back();
     }
 
     /**
@@ -87,9 +94,9 @@ class ArticleController extends Controller
      */
     public function show($id)
     {
-        $article=Article::find($id);
-        $commentaires=Commentaire::all();
-        return view("admin.article.show",compact('article','commentaires'));
+        $article = Article::find($id);
+        $commentaires = Commentaire::all();
+        return view("admin.article.show", compact('article', 'commentaires'));
     }
 
     /**
@@ -100,9 +107,9 @@ class ArticleController extends Controller
      */
     public function edit($id)
     {
-        $article=Article::find($id);
-        $tags=Tag::all();
-        $categories=Categorie::all();
+        $article = Article::find($id);
+        $tags = Tag::all();
+        $categories = Categorie::all();
         $tableauTags = [];
 
         foreach ($article->tags as $tag) {
@@ -113,7 +120,7 @@ class ArticleController extends Controller
         foreach ($article->categories as $categorie) {
             $tableauCats[] = $categorie->id;
         }
-        return view('admin.article.edit',compact('article','tags','categories','tableauCats','tableauTags'));
+        return view('admin.article.edit', compact('article', 'tags', 'categories', 'tableauCats', 'tableauTags'));
     }
 
     /**
@@ -130,16 +137,16 @@ class ArticleController extends Controller
         $newArticle->titre = $request->titre;
         $newArticle->texte = $request->texte;
         $newArticle->user_id = Auth::user()->id;
-        $newArticle->statut=$request->statut;
+        $newArticle->statut = $request->statut;
         $newArticle->image = $request->file('image')->hashName();
-        $this->authorize('articleGate',$newArticle);
+        $this->authorize('articleGate', $newArticle);
         $newArticle->save();
         $newArticle->categories()->detach();
         $newArticle->tags()->detach();
         $newArticle->tags()->syncWithoutDetaching($request->tags);
         $newArticle->categories()->syncWithoutDetaching($request->cats);
         // Storage::disk('public')->delete('img/' . $newArticle->image);
-        $request->file('image')->storePublicly('img','public');
+        $request->file('image')->storePublicly('img', 'public');
         return redirect('/articles');
     }
 
@@ -151,11 +158,25 @@ class ArticleController extends Controller
      */
     public function destroy($id)
     {
-        $delete=Article::find($id);
+        $delete = Article::find($id);
         Article::find($id)->tags()->detach();
         Article::find($id)->categories()->detach();
-        $this->authorize('articleGate',$delete);
+        $this->authorize('articleGate', $delete);
         $delete->delete();
         return redirect()->back();
+    }
+    public function search()
+    {
+        $commentaires = Commentaire::all();
+        $navbar = Navbar::find(1);
+        $tags = Tag::all();
+        $categories = Categorie::all();
+        $footer = Footer::find(1);
+
+        $search_text = $_GET['query'];
+
+        $articles = Article::where('titre', 'LIKE', '%' . $search_text . '%')->get();
+
+        return view('search', compact('articles', 'tags', 'footer', 'categories', 'navbar', 'commentaires'));
     }
 }

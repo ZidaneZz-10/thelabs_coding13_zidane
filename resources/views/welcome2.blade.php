@@ -171,7 +171,7 @@
 						<h2>{{$testimonialTitle->titre}}</h2>
 					</div>
 					<div class="owl-carousel" id="testimonial-slide">
-					@foreach($testimonials as $testimonial)
+						@foreach($testimonials as $testimonial)
 						<!-- single testimonial -->
 						<div class="testimonial">
 							<span>‘​‌‘​‌</span>
@@ -188,7 +188,6 @@
 						</div>
 						@endforeach
 					</div>
-					<div class="text-center ">{{$testimonials->links()}}</div>
 
 				</div>
 			</div>
@@ -219,7 +218,8 @@
 				</div>
 				@endforeach
 			</div>
-			<div class="text-center ">{{$services->links()}}</div>
+			<div class="text-center ">{{$services->fragment('service')->links('vendor.pagination.bootstrap-4') }}
+			</div>
 			<div class="text-center">
 				<a href="" class="site-btn ">Browse</a>
 			</div>
@@ -361,7 +361,6 @@
 		<h2>{{$footer->texte}} <a href="https://colorlib.com" target="_blank">{{$footer->company}}</a></h2>
 	</footer>
 	<!-- Footer section end -->
-
 
 
 

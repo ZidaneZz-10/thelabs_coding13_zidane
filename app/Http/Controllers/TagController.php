@@ -36,6 +36,9 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
+        $validateData = $request->validate([
+            'name' => 'required',
+        ]);
         $newTag = new Tag;
         $newTag->name=$request->name;
         $newTag->save();

@@ -285,6 +285,11 @@ return [
         ],
         ['header' => 'Modification du Site'],
         [
+            'text'       => 'Users',
+            'icon'       => 'fas fa-users',
+            'url'        => '/users',
+        ],
+        [
             'text'       => 'NAVBAR',
             'icon'       => 'fas fa-bars',
             'url'        => '/navbar',
@@ -389,6 +394,11 @@ return [
             'text'       => 'Footer',
             'url'         => '/footer',
             'icon'        => 'fas fa-copyright',
+        ],
+        [
+            'text'       => 'Map',
+            'url'         => '/map',
+            'icon'        => 'fas fa-map-pin',
         ],
     ],
 
