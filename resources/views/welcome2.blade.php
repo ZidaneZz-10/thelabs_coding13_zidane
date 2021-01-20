@@ -171,91 +171,25 @@
 						<h2>{{$testimonialTitle->titre}}</h2>
 					</div>
 					<div class="owl-carousel" id="testimonial-slide">
+					@foreach($testimonials as $testimonial)
 						<!-- single testimonial -->
 						<div class="testimonial">
 							<span>‘​‌‘​‌</span>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla. Nulla sit amet luctus dolor. Etiam finibus consequa.</p>
+							<p>{{$testimonial->avis}}</p>
 							<div class="client-info">
 								<div class="avatar">
-									<img src="img/avatar/01.jpg" alt="">
+									<img src="{{asset('img/team/'.$testimonial->team->image)}}" alt="">
 								</div>
 								<div class="client-name">
-									<h2>Michael Smith</h2>
-									<p>CEO Company</p>
+									<h2>{{$testimonial->team->nom}}</h2>
+									<p>{{$testimonial->team->fonction}}</p>
 								</div>
 							</div>
 						</div>
-						<!-- single testimonial -->
-						<div class="testimonial">
-							<span>‘​‌‘​‌</span>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla. Nulla sit amet luctus dolor. Etiam finibus consequa.</p>
-							<div class="client-info">
-								<div class="avatar">
-									<img src="img/avatar/02.jpg" alt="">
-								</div>
-								<div class="client-name">
-									<h2>Michael Smith</h2>
-									<p>CEO Company</p>
-								</div>
-							</div>
-						</div>
-						<!-- single testimonial -->
-						<div class="testimonial">
-							<span>‘​‌‘​‌</span>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla. Nulla sit amet luctus dolor. Etiam finibus consequa.</p>
-							<div class="client-info">
-								<div class="avatar">
-									<img src="img/avatar/01.jpg" alt="">
-								</div>
-								<div class="client-name">
-									<h2>Michael Smith</h2>
-									<p>CEO Company</p>
-								</div>
-							</div>
-						</div>
-						<!-- single testimonial -->
-						<div class="testimonial">
-							<span>‘​‌‘​‌</span>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla. Nulla sit amet luctus dolor. Etiam finibus consequa.</p>
-							<div class="client-info">
-								<div class="avatar">
-									<img src="img/avatar/02.jpg" alt="">
-								</div>
-								<div class="client-name">
-									<h2>Michael Smith</h2>
-									<p>CEO Company</p>
-								</div>
-							</div>
-						</div>
-						<!-- single testimonial -->
-						<div class="testimonial">
-							<span>‘​‌‘​‌</span>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla. Nulla sit amet luctus dolor. Etiam finibus consequa.</p>
-							<div class="client-info">
-								<div class="avatar">
-									<img src="img/avatar/01.jpg" alt="">
-								</div>
-								<div class="client-name">
-									<h2>Michael Smith</h2>
-									<p>CEO Company</p>
-								</div>
-							</div>
-						</div>
-						<!-- single testimonial -->
-						<div class="testimonial">
-							<span>‘​‌‘​‌</span>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla. Nulla sit amet luctus dolor. Etiam finibus consequa.</p>
-							<div class="client-info">
-								<div class="avatar">
-									<img src="img/avatar/02.jpg" alt="">
-								</div>
-								<div class="client-name">
-									<h2>Michael Smith</h2>
-									<p>CEO Company</p>
-								</div>
-							</div>
-						</div>
+						@endforeach
 					</div>
+					<div class="text-center ">{{$testimonials->links()}}</div>
+
 				</div>
 			</div>
 		</div>
@@ -424,7 +358,7 @@
 
 	<!-- Footer section -->
 	<footer class="footer-section">
-		<h2>2017 All rights reserved. Designed by <a href="https://colorlib.com" target="_blank">Colorlib</a></h2>
+		<h2>{{$footer->texte}} <a href="https://colorlib.com" target="_blank">{{$footer->company}}</a></h2>
 	</footer>
 	<!-- Footer section end -->
 

@@ -6,6 +6,7 @@ use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\CommentaireController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\EmailController;
+use App\Http\Controllers\FooterController;
 use App\Http\Controllers\LogoController;
 use App\Http\Controllers\NavbarController;
 use App\Http\Controllers\NewsletterController;
@@ -22,6 +23,7 @@ use App\Models\Categorie;
 use App\Models\Commentaire;
 use App\Models\Contact;
 use App\Models\ContactIntro;
+use App\Models\Footer;
 use App\Models\Navbar;
 use App\Models\Presentation;
 use App\Models\Ready;
@@ -31,6 +33,7 @@ use App\Models\Tag;
 use Illuminate\Support\Str;
 use App\Models\Team;
 use App\Models\TeamTitle;
+use App\Models\Testimonial;
 use App\Models\TestimonialTitle;
 use App\Models\TextCarousel;
 use App\Models\Video;
@@ -125,15 +128,23 @@ Route::get('/welcome', function () {
     $str2 = Str::of($str)->replace(')', '</span>');
 
     $video = Video::find(1);
+
     $testimonialTitle = TestimonialTitle::find(1);
+    $testimonials=Testimonial::orderbydesc('id')->limit(6)->paginate(2);
+
     $ready = Ready::find(1);
+
     $contact = Contact::find(1);
+
     $contactIntro = ContactIntro::find(1);
 
     $teams = Team::inRandomOrder()->get();
     $counter = 0;
     $ok = 1;
-    return view('welcome2', compact('navbar', 'carouselImg', 'textCarousel', 'serviceCards', 'services', 'presentation', 'video', 'ready', 'contact', 'contactIntro', 'str2', 'str3', 'serviceTitle', 'str4', 'teamTitle', 'testimonialTitle', 'teams', 'counter', 'ok'));
+
+    $footer=Footer::find(1);
+
+    return view('welcome2', compact('navbar',"footer", 'testimonials','carouselImg', 'textCarousel', 'serviceCards', 'services', 'presentation', 'video', 'ready', 'contact', 'contactIntro', 'str2', 'str3', 'serviceTitle', 'str4', 'teamTitle', 'testimonialTitle', 'teams', 'counter', 'ok'));
 });
 
 //Navbar
@@ -255,3 +266,10 @@ Route::post('/delete-newsletter/{id}', [NewsletterController::class, 'destroy'])
 // liste d'emails de contact
 Route::get('/emails', [EmailController::class, 'index'])->middleware('admin');
 Route::post('/delete-email/{id}', [EmailController::class, 'destroy']);
+
+//footer
+Route::get('/footer', [FooterController::class, 'index'])->middleware('webmaster');
+Route::get('/edit-footer/{id}', [FooterController::class, 'edit'])->middleware(('webmaster'));
+Route::post('/update-footer/{id}', [FooterController::class, 'update']);
+
+

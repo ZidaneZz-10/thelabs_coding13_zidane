@@ -40,6 +40,7 @@ class DatabaseSeeder extends Seeder
             CommentaireSeeder::class,
             NewsletterSeeder::class,
             EmailSeeder::class,
+            FooterSeeder::class,
         ]);
     }
 }

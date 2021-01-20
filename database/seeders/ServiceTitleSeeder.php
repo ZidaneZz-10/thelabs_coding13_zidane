@@ -17,7 +17,7 @@ class ServiceTitleSeeder extends Seeder
         DB::table('service_titles')->insert(
             [
                 [
-                    'titre'=>"GET IN THE LAB AND SEE THE SERVICES",          
+                    'titre'=>"GET IN (THE LAB) AND SEE THE SERVICES",          
                 ],
             ],
         );

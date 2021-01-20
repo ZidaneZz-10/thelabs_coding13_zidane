@@ -2,13 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\MailSender;
-use App\Models\Email;
-use App\Models\Newsletter;
+use App\Models\Footer;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
 
-class EmailController extends Controller
+class FooterController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +14,8 @@ class EmailController extends Controller
      */
     public function index()
     {
-        $mails=Email::all();
-        return view('admin.mail.mail',compact('mails'));
+        $footers=Footer::all();
+        return view('admin.footer.footer',compact('footers'));
     }
 
     /**
@@ -39,23 +36,16 @@ class EmailController extends Controller
      */
     public function store(Request $request)
     {
-        $newEntry=new Email;
-        $newEntry->name=$request->name;
-        $newEntry->email=$request->email;
-        $newEntry->subject=$request->subject;
-        $newEntry->message=$request->message;
-        Mail::to("ouldessayda@gmail.Com")->send(new MailSender($request));
-        $newEntry->save();
-        return redirect()->back();
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Email  $email
+     * @param  \App\Models\Footer  $footer
      * @return \Illuminate\Http\Response
      */
-    public function show(Email $email)
+    public function show(Footer $footer)
     {
         //
     }
@@ -63,37 +53,40 @@ class EmailController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Email  $email
+     * @param  \App\Models\Footer  $footer
      * @return \Illuminate\Http\Response
      */
-    public function edit(Email $email)
+    public function edit($id)
     {
-        //
+        $footer=Footer::find($id);
+        return view('admin.footer.edit',compact('footer'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Email  $email
+     * @param  \App\Models\Footer  $footer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Email $email)
+    public function update(Request $request, $id)
     {
-        //
+        $update=Footer::find($id);
+        $update->texte = $request->texte;
+        $update->company = $request->company;
+        $this->authorize('webmaster');
+        $update->save();
+        return redirect('/footer');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Email  $email
+     * @param  \App\Models\Footer  $footer
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Footer $footer)
     {
-        $delete=Email::find($id);
-        $this->authorize('admin');
-        $delete->delete();
-        return redirect()->back();
+        //
     }
 }

@@ -385,6 +385,11 @@ return [
             'url'         => '/newsletters',
             'icon'        => 'fas fa-address-book',
         ],
+        [
+            'text'       => 'Footer',
+            'url'         => '/footer',
+            'icon'        => 'fas fa-copyright',
+        ],
     ],
 
     /*

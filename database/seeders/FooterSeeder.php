@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class TeamTitleSeeder extends Seeder
+class FooterSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,12 +14,13 @@ class TeamTitleSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('team_titles')->insert(
+        DB::table('footers')->insert(
             [
                 [
-                    'titre'=>"GET IN (THE LAB) AND MEET THE TEAM",          
+                    'texte' => '2017 All rights reserved. Designed by',
+                    'company' => "Colorlib",
                 ],
-            ],
+            ]
         );
     }
 }
