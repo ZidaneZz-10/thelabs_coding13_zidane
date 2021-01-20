@@ -244,8 +244,8 @@
 				<!-- single member -->
 				<div class="col-sm-4">
 					<div class="member">
-						<img src="{{asset('img/team/'.$item->user->image)}}" alt="">
-						<h2>{{$item->nom}}</h2>
+						<img src="{{asset('img/'.$item->user->image)}}" alt="">
+						<h2>{{$item->user->name}}</h2>
 						<h3>{{$item->fonction}}</h3>
 					</div>
 				</div>
@@ -261,8 +261,8 @@
 
 				<div class="col-sm-4">
 					<div class="member">
-						<img src="{{asset('img/team/'.$item->user->image)}}" alt="">
-						<h2>{{$item->nom}}</h2>
+						<img src="{{asset('img/'.$item->user->image)}}" alt="">
+						<h2>{{$item->user->name}}</h2>
 						<h3>{{$item->fonction}}</h3>
 					</div>
 				</div>
@@ -279,8 +279,8 @@
 
 				<div class="col-sm-4">
 					<div class="member">
-						<img src="{{asset('img/team/'.$item->user->image)}}" alt="">
-						<h2>{{$item->nom}}</h2>
+						<img src="{{asset('img/'.$item->user->image)}}" alt="">
+						<h2>{{$item->user->name}}</h2>
 						<h3>{{$item->fonction}}</h3>
 					</div>
 				</div>

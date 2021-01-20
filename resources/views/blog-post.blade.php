@@ -135,7 +135,7 @@
 						<!-- Post Author -->
 						<div class="author">
 							<div class="avatar">
-								<img src="{{asset('img/team/'.$article->user->image)}}" alt="">
+								<img src="{{asset('img/'.$article->user->image)}}" alt="">
 							</div>
 							<div class="author-info">
 								<h2>{{$article->user->name}}, <span>Author</span></h2>
@@ -160,7 +160,7 @@
 								@if($comment->article_id==$article->id)
 								<li>
 									<div class="avatar">
-										<img src="{{asset('img/team/'.$comment->user->image)}}" alt="">
+										<img src="{{asset('img/'.$comment->user->image)}}" alt="">
 									</div>
 									<div class="commetn-text">
 										<h3>{{$comment->user->name}} | {{$comment->created_at->format('d')}} {{$comment->created_at->format('M')}}, {{$comment->created_at->format('Y')}} </h3>
