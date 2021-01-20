@@ -12,7 +12,7 @@
         <label for="">Choisissez une personne de la team : <br>
             <select name="team_id">
                 @foreach($teams as $team)
-                <option value="{{$team->id}}">{{$team->nom}}</option>
+                <option value="{{$team->id}}">{{$team->user->name}}</option>
                 @endforeach
             </select><br></label><br>
 
