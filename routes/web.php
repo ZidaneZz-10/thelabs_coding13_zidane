@@ -17,6 +17,7 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\TestimonialController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\VideoController;
 use App\Models\Article;
 use App\Models\Carousel;
@@ -299,3 +300,8 @@ Route::post('/update-footer/{id}', [FooterController::class, 'update']);
 Route::get('/map', [MapController::class, 'index'])->middleware('webmaster');
 Route::get('/edit-map/{id}', [MapController::class, 'edit'])->middleware(('webmaster'));
 Route::post('/update-map/{id}', [MapController::class, 'update']);
+
+//users
+Route::get('/users', [UserController::class, 'index'])->middleware('admin');
+Route::post('/update-user/{id}', [UserController::class, 'update']);
+
