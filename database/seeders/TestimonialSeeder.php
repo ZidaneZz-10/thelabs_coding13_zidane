@@ -29,7 +29,7 @@ class TestimonialSeeder extends Seeder
             ],
             [
                 'avis' => 'Lorem ipsum dolor sit amet, Oussama le bg consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla. Nulla sit amet luctus dolor. Etiam finibus consequa.',
-                'team_id' => 4,
+                'team_id' => 2,
             ],
             [
                 'avis' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur leo est, feugiat nec elementum id, suscipit id nulla. Nulla sit amet luctus dolor. Etiam finibus consequa.',

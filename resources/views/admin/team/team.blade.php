@@ -23,7 +23,7 @@
         <div class="col-3">
             <img height="220px" width="220px" src="{{asset('img/team/'.$team->image)}}" alt="">
             <br>
-            <p>Nom : {{$team->nom}}</p>
+            <p>Nom : {{$team->user->name}}</p>
             <p>Fonction : {{$team->fonction}}</p>
             <button class="btn btn-primary mt-4 mr-2"><a href="/edit-team/{{$team->id}}" class="text-light">Edit</a></button>
             @can('webmaster')

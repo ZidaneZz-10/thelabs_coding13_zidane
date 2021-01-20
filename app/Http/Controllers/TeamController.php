@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Team;
 use App\Models\TeamTitle;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -28,7 +29,9 @@ class TeamController extends Controller
      */
     public function create()
     {
-        return view('admin.team.create');
+        $teams=Team::all();
+        $users=User::all();
+        return view('admin.team.create',compact('users','teams'));
     }
 
     /**
@@ -40,17 +43,14 @@ class TeamController extends Controller
     public function store(Request $request)
     {
         $validateData = $request->validate([
-            'image' => 'required',
-            'nom' => 'required',
+            'user_id' => 'required',
             'fonction' => 'required',
         ]);
         $membre = new Team;
-        $membre->image = $request->file('image')->hashName();
-        $membre->nom=$request->nom;
+        $membre->user_id=$request->user_id;
         $membre->fonction=$request->fonction;
         $this->authorize('webmaster');
         $membre->save();
-        $request->file('image')->storePublicly('img/team', 'public');
         return redirect('/team');
     }
 
@@ -87,17 +87,9 @@ class TeamController extends Controller
     public function update(Request $request, $id)
     {
         $update = Team::find($id);
-        if ($request->hasFile('image')) {
-            // Do something with the file
-            $file = $request->file('image');
-        }
-        $update->image = $request->file('image')->hashName();
-        $update->nom=$request->nom;
         $update->fonction=$request->fonction;
         $this->authorize('webmaster');
         $update->save();
-        // Storage::disk('public')->delete('img/team/' . $update->image);
-        $request->file('image')->storePublicly('img/team', 'public');
         return redirect('/team');
     }
     public function update2(Request $request, $id)

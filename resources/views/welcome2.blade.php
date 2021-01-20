@@ -178,7 +178,7 @@
 							<p>{{$testimonial->avis}}</p>
 							<div class="client-info">
 								<div class="avatar">
-									<img src="{{asset('img/team/'.$testimonial->team->image)}}" alt="">
+									<img src="{{asset('img/team/'.$testimonial->team->user->image)}}" alt="">
 								</div>
 								<div class="client-name">
 									<h2>{{$testimonial->team->nom}}</h2>
@@ -244,7 +244,7 @@
 				<!-- single member -->
 				<div class="col-sm-4">
 					<div class="member">
-						<img src="{{asset('img/team/'.$item->image)}}" alt="">
+						<img src="{{asset('img/team/'.$item->user->image)}}" alt="">
 						<h2>{{$item->nom}}</h2>
 						<h3>{{$item->fonction}}</h3>
 					</div>
@@ -261,7 +261,7 @@
 
 				<div class="col-sm-4">
 					<div class="member">
-						<img src="{{asset('img/team/'.$item->image)}}" alt="">
+						<img src="{{asset('img/team/'.$item->user->image)}}" alt="">
 						<h2>{{$item->nom}}</h2>
 						<h3>{{$item->fonction}}</h3>
 					</div>
@@ -279,7 +279,7 @@
 
 				<div class="col-sm-4">
 					<div class="member">
-						<img src="{{asset('img/team/'.$item->image)}}" alt="">
+						<img src="{{asset('img/team/'.$item->user->image)}}" alt="">
 						<h2>{{$item->nom}}</h2>
 						<h3>{{$item->fonction}}</h3>
 					</div>

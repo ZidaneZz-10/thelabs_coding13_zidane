@@ -9,11 +9,10 @@
     <div class="container">
         <div>
             <div class="row">
-                <div class="col-8"><img height="300px" width="500px" src="{{asset('img/team/'.$team->image)}}" alt=""><br></div>
                 <div class="col-4">
-                    <input type="file" name="image">
-                    <input type="text" name="nom" value="{{$team->nom}}" id="">
-                    <input type="text" name="fonction" value="{{$team->fonction}}" id=""><br>
+                <h3>{{$team->user->name}}</h3>
+                <label for=""><input type="text" name="fonction" value="{{$team->fonction}}" id=""></label>
+                    <br>
                     <button class="btn btn-primary mt-4 ">Update</button>
                 </div>
             </div>

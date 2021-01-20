@@ -4,12 +4,24 @@
 
 @section('content')
 <div class="container">
-@can('webmaster')
+    @can('webmaster')
     <form action="/add-team" method="POST" enctype="multipart/form-data">
         @csrf
-        <label for="image" class="mt-3">Inserer une image : <br><input type="file" name="image" id="image" class="w-50"></label><br>
-        <label for="nom" class="mt-3">Nom/Prenom : <br><input type="text" name="nom" id="nom" class="w-50"></label><br>
-        <label for="fonction" class="mt-3">fonction : <br><input type="text" name="fonction" id="fonction" class="w-50"></label><br>
+        <label for="inputCity">User :</label>
+        <select class="form-control" name="user_id">
+            @foreach ($users as $user)
+            <div class="d-none">{{$sors=0}}</div>
+            @foreach ($teams as $team)
+            @if ($team->user_id != $user->id && $sors==0)
+            <option value="{{$user->id}}">{{$user->name}}</option>
+            <div class="d-none">{{$sors++}}</div>
+            @endif
+            @endforeach
+            @endforeach
+        </select>
+        <div class="form-row">
+            <label for="">Fonction : <br><input type="text" name="fonction" id=""></label><br>
+        </div>
         <button type="submit">Add</button>
     </form>
     @endcan

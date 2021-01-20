@@ -17,24 +17,16 @@ class TeamSeeder extends Seeder
         DB::table('teams')->insert(
             [
                 [
-                    'image'=>"1.jpg",
-                    'nom'=>"Zidane Ouldessayda",
+                    'user_id'=>1,
                     'fonction'=>"CEO",
                 ],
                 [
-                    'image'=>"2.jpg",
-                    'nom'=>"Oussama Ghezal",
+                    'user_id'=>2,
                     'fonction'=>"Marketing",
                 ],
                 [
-                    'image'=>"3.jpg",
-                    'nom'=>"Abdel Taouil",
+                    'user_id'=>3,
                     'fonction'=>"Comptabilité",
-                ],
-                [
-                    'image'=>"3.jpg",
-                    'nom'=>"Nicolas Primo",
-                    'fonction'=>"Director",
                 ],
             ],
         );
