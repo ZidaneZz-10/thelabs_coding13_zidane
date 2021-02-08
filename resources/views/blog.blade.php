@@ -67,12 +67,7 @@
 				@endauth
 				@endif
 				@auth
-				<li style="list-style: none; margin:25px;margin-left:10px">
-					<form id="logout-form" action="{{route('logout') }}" method="POST" class="d-none">
-						@csrf
-						<button class="btn btn-danger p-5" type="submit">Deconnexion</button>
-					</form>
-				</li>
+				<li><button class="btn btn-danger"><a href="{{ url('/logout') }}">Logout</a></button></li>
 				@endauth
 			</ul>
 		</nav>
@@ -102,7 +97,6 @@
 			<div class="row">
 				<div class="col-md-8 col-sm-7 blog-posts">
 					@foreach($articles as $article)
-					@if($article->statut=='authorized')
 					<!-- Post item -->
 					<div class="post-item">
 						<div class="post-thumbnail">
@@ -135,7 +129,6 @@
 
 						</div>
 					</div>
-					@endif
 					@endforeach
 					<div class="text-center ">{{$articles->fragment('article')->links('vendor.pagination.bootstrap-4') }}
 					</div>

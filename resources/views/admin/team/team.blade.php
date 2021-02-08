@@ -21,7 +21,7 @@
         </div>
         @foreach($teams as $team)
         <div class="col-3">
-            <img height="220px" width="220px" src="{{asset('img/team/'.$team->image)}}" alt="">
+            <img height="220px" width="220px" src="{{asset('img/'.$team->user->image)}}" alt="">
             <br>
             <p>Nom : {{$team->user->name}}</p>
             <p>Fonction : {{$team->fonction}}</p>

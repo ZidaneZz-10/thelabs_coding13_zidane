@@ -67,12 +67,7 @@
 				@endauth
 				@endif
 				@auth
-				<li style="list-style: none; margin:25px;margin-left:10px">
-					<form id="logout-form" action="{{route('logout') }}" method="POST" class="d-none">
-						@csrf
-						<button class="btn btn-danger p-5" type="submit">Deconnexion</button>
-					</form>
-				</li>
+				<li><button class="btn btn-danger"><a href="{{ url('/logout') }}">Logout</a></button></li>
 				@endauth
 			</ul>
 		</nav>

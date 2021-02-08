@@ -46,17 +46,17 @@
 </div>
 @can('webmaster')
 <form action="/accepte-article/{{$article->id}}" method="post">
-@csrf
-<input type="text" name="statut" value="authorized" style="display: none;">
-<button type="submit" class='btn btn-success'>Accepter</button>
+  @csrf
+  <input type="text" name="statut" value="authorized" style="display: none;">
+  <button type="submit" class='btn btn-success'>Accepter</button>
 </form>
 @endcan
 @can('webmaster')
 <form action="/delete-article/{{$article->id}}" method="POST">
-    @csrf
-    <button type="submit" class="btn btn-danger mt-2">Decline</button><br><br>
-  </form>
-  @endcan
+  @csrf
+  <button type="submit" class="btn btn-danger mt-2">Decline</button><br><br>
+</form>
+@endcan
 <hr>
 @endif
 

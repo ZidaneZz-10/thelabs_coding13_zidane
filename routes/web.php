@@ -56,7 +56,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/blog', function () {
-    $articles = Article::paginate(3);
+    $articles = Article::where('statut','authorized')->paginate(3);
     $commentaires = Commentaire::all();
     $navbar = Navbar::find(1);
     $tags = Tag::all();
@@ -66,6 +66,9 @@ Route::get('/blog', function () {
     return view('blog', compact('articles', 'tags', 'footer', 'categories', 'navbar', 'commentaires'));
 });
 Route::get('/search', [ArticleController::class, 'search']);
+
+Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
+
 
 Route::get('/contactMap', function () {
     $navbar = Navbar::find(1);
